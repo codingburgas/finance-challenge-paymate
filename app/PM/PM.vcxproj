@@ -131,8 +131,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="menu.cpp" />
+    <ClCompile Include="accounts.cpp" />
+    <ClCompile Include="accessData.cpp" />
+    <ClCompile Include="validation.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="accounts.h" />
+    <ClInclude Include="accessData.h" />
+    <ClInclude Include="validation.h" />
+    <ClInclude Include="menu.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
