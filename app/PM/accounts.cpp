@@ -2,6 +2,7 @@
 #include "accounts.h"
 #include "accessData.h"
 #include "validation.h"
+#include "dashboard.h"
 
 void signup()
 {
@@ -301,7 +302,7 @@ void startingScreen()
         DrawRectangleRounded(loginButton, 5, (int)2, (isMouseOverLoginButton ? DARKGRAY : BLACK));
         DrawText("Login", loginButtonPosition.x, loginButtonPosition.y, 50, WHITE);
         if (CheckCollisionPointRec(mousePosition, loginButton) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-            login();
+            dashboard();
         }
 
 

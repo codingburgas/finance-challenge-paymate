@@ -130,15 +130,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="budget.cpp" />
+    <ClCompile Include="dashboard.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="accounts.cpp" />
     <ClCompile Include="accessData.cpp" />
+    <ClCompile Include="profile.cpp" />
+    <ClCompile Include="statistics.cpp" />
     <ClCompile Include="validation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="accounts.h" />
     <ClInclude Include="accessData.h" />
+    <ClInclude Include="budget.h" />
+    <ClInclude Include="dashboard.h" />
+    <ClInclude Include="profile.h" />
+    <ClInclude Include="statistics.h" />
     <ClInclude Include="validation.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="pch.h" />
