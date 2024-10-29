@@ -284,15 +284,15 @@ void login()
 
     int passwordLetterCount = 0;
 
-    const Rectangle usernameBox = { GetScreenWidth() / 2 + 275, GetScreenHeight() / 2 - 100 , 550, 65 };
+    const Rectangle usernameBox = { GetScreenWidth() / 2 - 350, GetScreenHeight() / 2 - 165 , 550, 65 };
 
-    const Rectangle passwordBox = { GetScreenWidth() / 2 + 275, GetScreenHeight() / 2 + 150, 550, 65 };
+    const Rectangle passwordBox = { GetScreenWidth() / 2 - 350, GetScreenHeight() / 2 + 40 , 550, 65 };
 
     bool mouseOnUsername = false;
 
     bool mouseOnPassword = false;
 
-    const Rectangle loginButton = { GetScreenWidth() / 2 + 410, GetScreenHeight() / 2 + 300, 270, 90 };
+    const Rectangle loginButton = { GetScreenWidth() / 2 , GetScreenHeight() / 2 + 400, 270, 90 };
 
 
 
@@ -377,7 +377,6 @@ void login()
             }
 
         }
-
         if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && CheckCollisionPointRec(mousePosition, loginButton) || IsKeyPressed(KEY_ENTER)) {
 
             Validate validator;
@@ -386,7 +385,7 @@ void login()
 
                 strcpy_s(currentUser, username);
 
-                startingScreen();
+                dashboard();
 
             }
 
@@ -411,27 +410,10 @@ void login()
         ClearBackground(RAYWHITE);
 
         DrawTexture(background, 0, 0, WHITE);
-
-        DrawText("Welcome back! Log in!", GetScreenWidth() / 2 + 285, GetScreenHeight() / 2 - 275, 50, BLACK);
-
-        DrawRectangleLines(usernameBox.x, usernameBox.y, usernameBox.width, usernameBox.height, (mouseOnUsername ? BLACK : BLACK));
-
         DrawText(username, usernameBox.x + 5, usernameBox.y + 8, 40, BLACK);
-
-        DrawRectangleLines(passwordBox.x, passwordBox.y, passwordBox.width, passwordBox.height, (mouseOnPassword ? BLACK : BLACK));
-
         DrawText(TextFormat("%.*s", passwordLetterCount, "**************************"), passwordBox.x + 5, passwordBox.y + 8, 40, BLACK);
-
         bool isMouseOverButtonLogin = CheckCollisionPointRec(mousePosition, loginButton);
-
         DrawRectangleRec(loginButton, (isMouseOverButtonLogin ? BLACK : BLACK));
-
-        DrawText("Login", GetScreenWidth() / 2 + 475, GetScreenHeight() / 2 + 325, 50, WHITE);
-
-        DrawText("Username:", GetScreenWidth() / 2 + 415, GetScreenHeight() / 2 - 155, 50, BLACK);
-
-        DrawText("Password:", GetScreenWidth() / 2 + 415, GetScreenHeight() / 2 + 85, 50, BLACK);
-
         EndDrawing();
 
     }

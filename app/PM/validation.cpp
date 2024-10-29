@@ -9,7 +9,6 @@ const bool Validate::doesAccountExist(const string& targetUsername) {
         istringstream iss(line);
         if (getline(iss, storedUsername, ',')) { // Extract the stored username from the line
             if (storedUsername == targetUsername) { // Compare stored username with target username
-                cout << storedUsername; // Output the stored username (for debugging)
                 return true; // Return true if the target username matches any stored username
             }
         }
