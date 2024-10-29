@@ -9,6 +9,7 @@ void signup()
     char username[25] = "";
     char password[25] = "";
     char repeatPassword[25] = "";
+    string gender = "";
 
     int usernameLetterCount = 0;
 
@@ -16,17 +17,20 @@ void signup()
 
     int repeatPasswordLetterCount = 0;
 
-    const Rectangle usernameBox = { GetScreenWidth() / 2 + 275, GetScreenHeight() / 2 - 100 , 550, 65 };
+    const Rectangle usernameBox = { GetScreenWidth() / 2 - 350, GetScreenHeight() / 2 - 180 , 550, 65 };
 
-    const Rectangle passwordBox = { GetScreenWidth() / 2 + 275, GetScreenHeight() / 2 + 50, 550, 65 };
+    const Rectangle passwordBox = { GetScreenWidth() / 2- 350, GetScreenHeight() / 2+ 20 , 550, 65 };
 
-    const Rectangle repeatPasswordBox = { GetScreenWidth() / 2 + 275, GetScreenHeight() / 2 + 200, 550, 65 };
+    const Rectangle repeatPasswordBox = { GetScreenWidth() / 2- 350, GetScreenHeight() / 2 +180, 550, 65 };
+
+    const Rectangle genderBoxMale = { GetScreenWidth() / 2- 200 , GetScreenHeight() / 2 +300, 100, 65 };
+    const Rectangle genderBoxFemale = { GetScreenWidth() / 2+ 100, GetScreenHeight() / 2 +300, 100, 65 };
 
     Rectangle inputBoxes[] = { usernameBox, passwordBox, repeatPasswordBox };
 
     bool mouseOnInputBox[3] = { false };
 
-    const Rectangle signupButton = { GetScreenWidth() / 2 + 415, GetScreenHeight() / 2 + 325, 270, 90 };
+    const Rectangle signupButton = { GetScreenWidth() / 2 , GetScreenHeight() / 2 + 400, 270, 90 };
 
     DataAccess account;
 
@@ -171,7 +175,14 @@ void signup()
         }
 
         Validate validator;
+        if (CheckCollisionPointRec(mousePosition, genderBoxMale) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
 
+            gender = "male";
+        }
+        else if (CheckCollisionPointRec(mousePosition, genderBoxFemale) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+        {
+            gender = "female";
+        }
         bool showMismatchError = false; // Flag for mismatched passwords
 
         bool showRequirementError = false; // Flag for requirement errors
@@ -206,11 +217,11 @@ void signup()
 
                     validator.containsDigit(password) && validator.containsSpecial(password)) {
 
-                    account.addAccount(username, password);
+                    account.addAccount(username,password,gender);
 
                     strcpy_s(currentUser, username);
 
-                    startingScreen();
+                    dashboard();
 
                 }
 
@@ -237,28 +248,19 @@ void signup()
 
         BeginDrawing();
 
-        DrawTexture(background, 0, 0, RAYWHITE);
-
         ClearBackground(RAYWHITE);
 
         DrawTexture(background, 0, 0, RAYWHITE);
-
-
-        for (int i = 0; i < 4; ++i) {
-
-            DrawRectangleLines(inputBoxes[i].x, inputBoxes[i].y, inputBoxes[i].width, inputBoxes[i].height, (mouseOnInputBox[i] ? BLACK : BLACK));
-
-        }
 
         DrawText(username, usernameBox.x + 5, usernameBox.y + 8, 40, BLACK);
 
         DrawText(TextFormat("%.*s", passwordLetterCount, "******************************************"), passwordBox.x + 5, passwordBox.y + 8, 40, BLACK);
 
         DrawText(TextFormat("%.*s", repeatPasswordLetterCount, "******************************************"), repeatPasswordBox.x + 5, repeatPasswordBox.y + 8, 40, BLACK);
-
-        DrawLine(50, 50, 600, 600, WHITE);
-
-        DrawText("Sign up", GetScreenWidth() / 2 + 453, GetScreenHeight() / 2 + 345, 50, WHITE);
+        DrawRectangleRec(genderBoxMale, CheckCollisionPointRec(mousePosition,genderBoxMale)? LIGHTGRAY :BLUE);
+        DrawRectangleRec(genderBoxFemale, CheckCollisionPointRec(mousePosition,genderBoxFemale)? LIGHTGRAY :RED);
+        DrawRectangleRec(signupButton, CheckCollisionPointRec(mousePosition, signupButton) ? LIGHTGRAY : GREEN);
+        DrawText("Sign up", GetScreenWidth() / 2 + 20, GetScreenHeight() / 2 + 380, 50, WHITE);
 
         EndDrawing();
 
