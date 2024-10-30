@@ -2,7 +2,7 @@
 <br>
 <br>
 <img align="right" src="./assets/logo/logoTransparent.png">
-<h1 align="center">💲 PayMate 💲</h1>
+<h1 align="center">🤑 PayMate 🤑</h1>
  
 <p align = "center">
 <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/codingburgas/finance-challenge-paymate?style=for-the-badge">
@@ -24,14 +24,12 @@
 
 <h2 align="left">🔧 Used Tools </h2>
 <p align="left">
+ <a href="https://visualstudio.microsoft.com/vs/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Visual_Studio_Icon_2019.svg/2060px-Visual_Studio_Icon_2019.svg.png" alt="Visual Studio logo" width=40px/></a>
+ <a href="https://teams.microsoft.com/_?culture=en-us&country=us#/conversations/19:b01cf915e57b430ea93ab780c4f6b6dc@thread.v2?ctx=chat"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Microsoft_Office_Teams_%282018%E2%80%93present%29.svg/2203px-Microsoft_Office_Teams_%282018%E2%80%93present%29.svg.png" alt="Teams logo" width=48px></a>
+    <a href="https://git-scm.com/"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" heigh=48px width=48px></a>
    <a href="https://www.microsoft.com/en-ww/microsoft-365/word"><img src="https://img.icons8.com/fluency/48/000000/microsoft-word-2019.png" alt="MS Word logo" width=50px></a>
-   <a href="https://www.microsoft.com/en-us/microsoft-365/powerpoint"><img src="https://img.icons8.com/fluency/48/000000/microsoft-powerpoint-2019.png" alt="MS PowerPoint logo" width=50px>
-   <a href="https://www.microsoft.com/en-us/microsoft-365/excel"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg/2203px-Microsoft_Office_Excel_%282019%E2%80%93present%29.svg.png" alt="MS Excel logo" width=45px></a>
-   <a href="https://visualstudio.microsoft.com/vs/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Visual_Studio_Icon_2019.svg/2060px-Visual_Studio_Icon_2019.svg.png" alt="Visual Studio logo" width=42px/></a>
-   <a href="https://git-scm.com/"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" heigh=48px width=48px></a>
-   <a href="https://teams.microsoft.com/_?culture=en-us&country=us#/conversations/19:b01cf915e57b430ea93ab780c4f6b6dc@thread.v2?ctx=chat"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Microsoft_Office_Teams_%282018%E2%80%93present%29.svg/2203px-Microsoft_Office_Teams_%282018%E2%80%93present%29.svg.png" alt="Teams logo" width=48px></a>
-   <a href="https://www.canva.com/help/transparent-background/"><img src="https://www.edigitalagency.com.au/wp-content/uploads/Canva-logo-png-circle-full-colour-white-font.png" alt="Canva logo"  width=48px></a>
-   <a href="https://www.piskelapp.com/"><img src="https://avatars.githubusercontent.com/u/28667131?s=280&v=4" alt="Piskel logo"  width=45px></a>
+   <a href="https://www.microsoft.com/en-us/microsoft-365/powerpoint"><img src="https://img.icons8.com/fluency/48/000000/microsoft-powerpoint-2019.png" alt="MS PowerPoint logo" width=53px>
+   <a href="https://freelogopng.com/image/607"><img src="https://freelogopng.com/images/all_img/1656733637logo-canva-png.png" alt="Canva logo"  width=44px></a>
  <br>
 
 <h2 align="left">📄 Documents</h2><br>
@@ -70,7 +68,7 @@
     <td align="center">Stoyan Hristov</td>
     <td align="center">Backend developer</td>
     <td align="center">🟥 10B</td>
-    <td align="center"> <a href="https://github.com/SPHristov">SPHristov22 </a></td>
+    <td align="center"> <a href="https://github.com/SPHristov22">SPHristov22 </a></td>
   </tr>
 </table>
 <br>
@@ -82,3 +80,5 @@
 ```
 git clone https://github.com/codingburgas/finance-challenge-paymate.git
 ```
+<p>Thank you for scrolling this far! Show some 🤍 by starring the repo!</p>
+
