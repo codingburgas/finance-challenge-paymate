@@ -14,25 +14,27 @@ const bool Validate::doesAccountExist(const string& targetUsername) {
         }
     }
     return false; // Return false if the target username is not found
+    
 }
 
 // Check if the given password matches the password associated with the given username.
 const bool Validate::isPasswordCorrect(const string& targetUsername, const string& targetPassword) {
     ifstream file("../data/accounts.csv"); // Open the accounts file
     string line;
-
+    string storedUsername, storedPassword,skipGender;
     while (getline(file, line)) { // Read each line in the file
         istringstream iss(line);
-        string storedUsername, storedPassword;
-
-        if (getline(iss, storedUsername, ',') && getline(iss, storedPassword, ',')) {
-            if (storedUsername == targetUsername && storedPassword == targetPassword) {
+        
+        if (getline(iss, storedUsername, ',') && getline(iss, storedPassword, ',') && getline(iss,skipGender,',')) {
+            if (storedUsername == targetUsername && storedPassword == targetPassword ) {
                 return true; // Return true if the target username and password match any stored pair
             }
         }
     }
+
     return false; // Return false if the target username and password are not found
 }
+
 
 // Check if the password contains at least one uppercase letter.
 bool Validate::containsUppercase(const string& password) {

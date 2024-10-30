@@ -1,69 +1,70 @@
 ﻿  accounts.cpp
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(20,58): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(20,58): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(20,87): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(20,87): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(22,57): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(22,57): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(22,85): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(22,85): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(24,63): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(24,63): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(24,92): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(24,92): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(26,59): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(26,59): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(26,89): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(26,89): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(27,61): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(27,61): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(27,90): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(27,90): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(33,55): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(33,55): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(33,83): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(33,83): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(255,61): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(255,42): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(257,138): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(257,119): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(259,156): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(259,131): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(287,58): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(287,58): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(287,87): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(287,87): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(289,58): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(289,58): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(289,87): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(289,87): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(295,54): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(295,54): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(295,82): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(295,82): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(414,61): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(414,42): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(415,122): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(415,103): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(435,58): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(435,58): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(435,87): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(435,87): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(437,59): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(437,59): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(437,88): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(437,88): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(439,57): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(439,57): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(439,86): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(439,86): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(465,69): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(465,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(476,81): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(476,52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(486,75): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(486,47): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-raylib.lib(rcore.c.obj) : warning LNK4099: PDB '' was not found with 'raylib.lib(rcore.c.obj)' or at ''; linking object as if no debug info
-raylib.lib(rshapes.c.obj) : warning LNK4099: PDB '' was not found with 'raylib.lib(rshapes.c.obj)' or at ''; linking object as if no debug info
-raylib.lib(rtextures.c.obj) : warning LNK4099: PDB '' was not found with 'raylib.lib(rtextures.c.obj)' or at ''; linking object as if no debug info
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(34,58): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(34,58): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(34,87): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(34,87): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(36,57): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(36,57): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(36,85): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(36,85): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(38,63): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(38,63): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(38,92): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(38,92): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(40,59): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(40,59): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(40,89): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(40,89): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(41,61): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(41,61): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(41,90): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(41,90): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(47,59): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(47,59): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(47,89): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(47,89): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(269,61): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(269,42): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(271,138): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(271,119): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(273,156): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(273,131): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(274,56): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(274,39): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(275,62): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(275,43): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(301,58): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(301,58): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(301,87): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(301,87): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(303,58): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(303,58): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(303,87): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(303,87): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(309,58): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(309,58): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(309,87): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(309,87): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(427,61): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(427,42): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(428,122): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(428,103): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(448,58): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(448,58): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(448,87): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(448,87): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(450,59): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(450,59): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(450,88): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(450,88): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(452,57): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(452,57): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(452,86): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(452,86): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(478,69): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(478,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(489,81): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(489,52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(499,75): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\PM\accounts.cpp(499,47): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   PM.vcxproj -> C:\Users\dimai\Desktop\pro\finance-challenge-paymate\app\x64\Debug\PM.exe
