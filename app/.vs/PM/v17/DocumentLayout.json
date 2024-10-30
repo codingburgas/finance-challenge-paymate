@@ -1,0 +1,262 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\School\\finance-challenge-paymate\\app\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE2BE19-32CE-4F24-A781-5C7FFA6E36FD}|PM\\PM.vcxproj|C:\\School\\finance-challenge-paymate\\app\\PM\\budget.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EBE2BE19-32CE-4F24-A781-5C7FFA6E36FD}|PM\\PM.vcxproj|solutionrelative:PM\\budget.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE2BE19-32CE-4F24-A781-5C7FFA6E36FD}|PM\\PM.vcxproj|C:\\School\\finance-challenge-paymate\\app\\PM\\accounts.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EBE2BE19-32CE-4F24-A781-5C7FFA6E36FD}|PM\\PM.vcxproj|solutionrelative:PM\\accounts.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE2BE19-32CE-4F24-A781-5C7FFA6E36FD}|PM\\PM.vcxproj|C:\\School\\finance-challenge-paymate\\app\\PM\\validation.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EBE2BE19-32CE-4F24-A781-5C7FFA6E36FD}|PM\\PM.vcxproj|solutionrelative:PM\\validation.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE2BE19-32CE-4F24-A781-5C7FFA6E36FD}|PM\\PM.vcxproj|C:\\School\\finance-challenge-paymate\\app\\PM\\validation.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EBE2BE19-32CE-4F24-A781-5C7FFA6E36FD}|PM\\PM.vcxproj|solutionrelative:PM\\validation.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE2BE19-32CE-4F24-A781-5C7FFA6E36FD}|PM\\PM.vcxproj|C:\\School\\finance-challenge-paymate\\app\\PM\\accessData.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EBE2BE19-32CE-4F24-A781-5C7FFA6E36FD}|PM\\PM.vcxproj|solutionrelative:PM\\accessData.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE2BE19-32CE-4F24-A781-5C7FFA6E36FD}|PM\\PM.vcxproj|C:\\School\\finance-challenge-paymate\\app\\PM\\accessData.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EBE2BE19-32CE-4F24-A781-5C7FFA6E36FD}|PM\\PM.vcxproj|solutionrelative:PM\\accessData.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE2BE19-32CE-4F24-A781-5C7FFA6E36FD}|PM\\PM.vcxproj|C:\\School\\finance-challenge-paymate\\app\\PM\\dashboard.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EBE2BE19-32CE-4F24-A781-5C7FFA6E36FD}|PM\\PM.vcxproj|solutionrelative:PM\\dashboard.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE2BE19-32CE-4F24-A781-5C7FFA6E36FD}|PM\\PM.vcxproj|C:\\School\\finance-challenge-paymate\\app\\PM\\statistics.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EBE2BE19-32CE-4F24-A781-5C7FFA6E36FD}|PM\\PM.vcxproj|solutionrelative:PM\\statistics.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE2BE19-32CE-4F24-A781-5C7FFA6E36FD}|PM\\PM.vcxproj|C:\\School\\finance-challenge-paymate\\app\\PM\\profile.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EBE2BE19-32CE-4F24-A781-5C7FFA6E36FD}|PM\\PM.vcxproj|solutionrelative:PM\\profile.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE2BE19-32CE-4F24-A781-5C7FFA6E36FD}|PM\\PM.vcxproj|C:\\School\\finance-challenge-paymate\\app\\PM\\profile.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EBE2BE19-32CE-4F24-A781-5C7FFA6E36FD}|PM\\PM.vcxproj|solutionrelative:PM\\profile.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE2BE19-32CE-4F24-A781-5C7FFA6E36FD}|PM\\PM.vcxproj|C:\\School\\finance-challenge-paymate\\app\\PM\\statistics.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EBE2BE19-32CE-4F24-A781-5C7FFA6E36FD}|PM\\PM.vcxproj|solutionrelative:PM\\statistics.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE2BE19-32CE-4F24-A781-5C7FFA6E36FD}|PM\\PM.vcxproj|C:\\School\\finance-challenge-paymate\\app\\PM\\dashboard.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EBE2BE19-32CE-4F24-A781-5C7FFA6E36FD}|PM\\PM.vcxproj|solutionrelative:PM\\dashboard.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE2BE19-32CE-4F24-A781-5C7FFA6E36FD}|PM\\PM.vcxproj|C:\\School\\finance-challenge-paymate\\app\\PM\\budget.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EBE2BE19-32CE-4F24-A781-5C7FFA6E36FD}|PM\\PM.vcxproj|solutionrelative:PM\\budget.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE2BE19-32CE-4F24-A781-5C7FFA6E36FD}|PM\\PM.vcxproj|C:\\School\\finance-challenge-paymate\\app\\PM\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EBE2BE19-32CE-4F24-A781-5C7FFA6E36FD}|PM\\PM.vcxproj|solutionrelative:PM\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE2BE19-32CE-4F24-A781-5C7FFA6E36FD}|PM\\PM.vcxproj|C:\\School\\finance-challenge-paymate\\app\\PM\\pch.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EBE2BE19-32CE-4F24-A781-5C7FFA6E36FD}|PM\\PM.vcxproj|solutionrelative:PM\\pch.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "validation.h",
+              "DocumentMoniker": "C:\\School\\finance-challenge-paymate\\app\\PM\\validation.h",
+              "RelativeDocumentMoniker": "PM\\validation.h",
+              "ToolTip": "C:\\School\\finance-challenge-paymate\\app\\PM\\validation.h",
+              "RelativeToolTip": "PM\\validation.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAABdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-10-30T19:42:46.403Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "accessData.h",
+              "DocumentMoniker": "C:\\School\\finance-challenge-paymate\\app\\PM\\accessData.h",
+              "RelativeDocumentMoniker": "PM\\accessData.h",
+              "ToolTip": "C:\\School\\finance-challenge-paymate\\app\\PM\\accessData.h",
+              "RelativeToolTip": "PM\\accessData.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-10-30T19:42:46.417Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "budget.h",
+              "DocumentMoniker": "C:\\School\\finance-challenge-paymate\\app\\PM\\budget.h",
+              "RelativeDocumentMoniker": "PM\\budget.h",
+              "ToolTip": "C:\\School\\finance-challenge-paymate\\app\\PM\\budget.h",
+              "RelativeToolTip": "PM\\budget.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-10-30T19:42:46.418Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "dashboard.cpp",
+              "DocumentMoniker": "C:\\School\\finance-challenge-paymate\\app\\PM\\dashboard.cpp",
+              "RelativeDocumentMoniker": "PM\\dashboard.cpp",
+              "ToolTip": "C:\\School\\finance-challenge-paymate\\app\\PM\\dashboard.cpp",
+              "RelativeToolTip": "PM\\dashboard.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-10-30T19:42:46.419Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "statistics.cpp",
+              "DocumentMoniker": "C:\\School\\finance-challenge-paymate\\app\\PM\\statistics.cpp",
+              "RelativeDocumentMoniker": "PM\\statistics.cpp",
+              "ToolTip": "C:\\School\\finance-challenge-paymate\\app\\PM\\statistics.cpp",
+              "RelativeToolTip": "PM\\statistics.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-10-30T19:42:46.419Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "accounts.cpp",
+              "DocumentMoniker": "C:\\School\\finance-challenge-paymate\\app\\PM\\accounts.cpp",
+              "RelativeDocumentMoniker": "PM\\accounts.cpp",
+              "ToolTip": "C:\\School\\finance-challenge-paymate\\app\\PM\\accounts.cpp",
+              "RelativeToolTip": "PM\\accounts.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-10-30T19:42:46.451Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "profile.h",
+              "DocumentMoniker": "C:\\School\\finance-challenge-paymate\\app\\PM\\profile.h",
+              "RelativeDocumentMoniker": "PM\\profile.h",
+              "ToolTip": "C:\\School\\finance-challenge-paymate\\app\\PM\\profile.h",
+              "RelativeToolTip": "PM\\profile.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-10-30T19:42:46.497Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "accessData.cpp",
+              "DocumentMoniker": "C:\\School\\finance-challenge-paymate\\app\\PM\\accessData.cpp",
+              "RelativeDocumentMoniker": "PM\\accessData.cpp",
+              "ToolTip": "C:\\School\\finance-challenge-paymate\\app\\PM\\accessData.cpp",
+              "RelativeToolTip": "PM\\accessData.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAA7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-10-30T19:42:46.498Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "budget.cpp",
+              "DocumentMoniker": "C:\\School\\finance-challenge-paymate\\app\\PM\\budget.cpp",
+              "RelativeDocumentMoniker": "PM\\budget.cpp",
+              "ToolTip": "C:\\School\\finance-challenge-paymate\\app\\PM\\budget.cpp",
+              "RelativeToolTip": "PM\\budget.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-10-30T19:42:46.499Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "profile.cpp",
+              "DocumentMoniker": "C:\\School\\finance-challenge-paymate\\app\\PM\\profile.cpp",
+              "RelativeDocumentMoniker": "PM\\profile.cpp",
+              "ToolTip": "C:\\School\\finance-challenge-paymate\\app\\PM\\profile.cpp",
+              "RelativeToolTip": "PM\\profile.cpp",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAABUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-10-30T19:42:46.499Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "statistics.h",
+              "DocumentMoniker": "C:\\School\\finance-challenge-paymate\\app\\PM\\statistics.h",
+              "RelativeDocumentMoniker": "PM\\statistics.h",
+              "ToolTip": "C:\\School\\finance-challenge-paymate\\app\\PM\\statistics.h",
+              "RelativeToolTip": "PM\\statistics.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-10-30T19:42:46.501Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "dashboard.h",
+              "DocumentMoniker": "C:\\School\\finance-challenge-paymate\\app\\PM\\dashboard.h",
+              "RelativeDocumentMoniker": "PM\\dashboard.h",
+              "ToolTip": "C:\\School\\finance-challenge-paymate\\app\\PM\\dashboard.h",
+              "RelativeToolTip": "PM\\dashboard.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-10-30T19:42:46.502Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "validation.cpp",
+              "DocumentMoniker": "C:\\School\\finance-challenge-paymate\\app\\PM\\validation.cpp",
+              "RelativeDocumentMoniker": "PM\\validation.cpp",
+              "ToolTip": "C:\\School\\finance-challenge-paymate\\app\\PM\\validation.cpp",
+              "RelativeToolTip": "PM\\validation.cpp",
+              "ViewState": "AQIAABUAAAAAAAAAAAAAABsAAAB0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-10-30T19:42:46.503Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\School\\finance-challenge-paymate\\app\\PM\\main.cpp",
+              "RelativeDocumentMoniker": "PM\\main.cpp",
+              "ToolTip": "C:\\School\\finance-challenge-paymate\\app\\PM\\main.cpp",
+              "RelativeToolTip": "PM\\main.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-10-30T19:42:46.503Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "pch.h",
+              "DocumentMoniker": "C:\\School\\finance-challenge-paymate\\app\\PM\\pch.h",
+              "RelativeDocumentMoniker": "PM\\pch.h",
+              "ToolTip": "C:\\School\\finance-challenge-paymate\\app\\PM\\pch.h",
+              "RelativeToolTip": "PM\\pch.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-10-30T19:42:46.504Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
