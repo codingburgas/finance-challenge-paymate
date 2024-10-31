@@ -5,14 +5,39 @@
 #include "accessData.h"
 #include "validation.h"
 
-
 struct USER_DATA {
     float monthlyIncome;
     float savings;
     float balance;
+    float growthRates;
 };
 
-USER_DATA loadUserData() {
+void generateUserData()
+{
+    string monthlyIncome = "0";
+    string savings = "0";
+    string balance = "0";
+    string growthRates = "0";
+    rapidcsv::Document accountData("../data/accountData.csv");
+    int rowCount = accountData.GetRowCount();
+    accountData.SetRow<string>(rowCount, { (string)currentUser, monthlyIncome, savings, balance, growthRates });
+    accountData.Save("../data/accountData.csv");
+}
+
+bool userDataExist()
+{
+    rapidcsv::Document accountData("../data/accountData.csv");
+    vector<string> users = accountData.GetColumn<string>("username");
+    return find(users.begin(), users.end(), (string)currentUser) != users.end();
+}
+
+USER_DATA loadUserData()
+{
+    if (!userDataExist())
+    {
+        generateUserData();
+    }
+
     USER_DATA userData;
     rapidcsv::Document accountData("../data/accountData.csv");
 
@@ -29,10 +54,16 @@ USER_DATA loadUserData() {
             userData.monthlyIncome = stof(accountData.GetCell<string>("monthlyIncome", userRow));
             userData.savings = stof(accountData.GetCell<string>("savings", userRow));
             userData.balance = stof(accountData.GetCell<string>("balance", userRow));
+            userData.growthRates = stof(accountData.GetCell<string>("growthRates", userRow));
         }
     }
-    catch (const std::exception& e) {
-        std::cerr << "Error loading user data: " << e.what() << '\n';
+    catch (const std::out_of_range& e) {
+        std::cerr << "Error: " << e.what() << '\n';
+        // Set default values or handle error accordingly
+        userData.monthlyIncome = 0.0f;
+        userData.savings = 0.0f;
+        userData.balance = 0.0f;
+        userData.growthRates = 0.0f;
     }
 
     return userData;

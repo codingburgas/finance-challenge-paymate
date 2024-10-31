@@ -8,6 +8,8 @@ struct USER_DATA {
     float monthlyIncome;
     float savings;
     float balance;
+    float growthRates;
+
 };
 
 extern USER_DATA loadUserData();
