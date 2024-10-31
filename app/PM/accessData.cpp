@@ -10,3 +10,12 @@ void DataAccess::addAccount(const string& username, const string& password, cons
     // Close the file
     file.close();
 }
+
+void DataAccess::addAccountInfo(const string& monhtlyIncome, const string& savings, const string& balance)const {
+    // Open accounts.csv file
+    ofstream file("../data/accountData.csv", ios_base::app);
+    // Write username and password
+    file << monhtlyIncome << ',' << savings << ',' << balance << "\n";
+    // Close the file
+    file.close();
+}
