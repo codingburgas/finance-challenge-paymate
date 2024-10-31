@@ -11,6 +11,7 @@
 #include <vector>
 #include <chrono>
 #include <cstring>
+#include "rapidcsv.h"
 
 using namespace std;
 

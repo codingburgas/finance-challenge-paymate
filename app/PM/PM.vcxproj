@@ -146,6 +146,7 @@
     <ClInclude Include="budget.h" />
     <ClInclude Include="dashboard.h" />
     <ClInclude Include="profile.h" />
+    <ClInclude Include="rapidcsv.h" />
     <ClInclude Include="statistics.h" />
     <ClInclude Include="validation.h" />
     <ClInclude Include="menu.h" />
