@@ -3,6 +3,8 @@
 #include "statistics.h"
 #include "profile.h"
 #include "accessData.h"
+#include "validation.h"
+
 
 struct USER_DATA {
     float monthlyIncome;
@@ -80,7 +82,22 @@ void dashboard()
     const Rectangle profileButton = { 740, 970, 140, 75 };
 
     USER_DATA userData = loadUserData();
+    Texture2D manBigSize = LoadTexture("../images/m.png");
+    Texture2D womanBigSize = LoadTexture("../images/w.png");
 
+    int newWidth = manBigSize.width / 2+30;
+    int newHeight = manBigSize.height / 2;
+    Image manImage = LoadImage("../images/m.png");
+    Image womanImage = LoadImage("../images/w.png");
+    ImageResize(&manImage, newWidth, newHeight);
+    ImageResize(&womanImage, newWidth, newHeight);
+    Texture2D man = LoadTextureFromImage(manImage);
+    Texture2D woman = LoadTextureFromImage(womanImage);
+    UnloadImage(manImage);
+    UnloadImage(womanImage);
+
+    Validate validator;
+    const Rectangle picToProfile = { GetScreenWidth() / 2 + 250, GetScreenHeight() / 2 - 500, man.width, man.height };
     SetTargetFPS(60);
 
     while (!WindowShouldClose())
@@ -88,7 +105,19 @@ void dashboard()
         Vector2 mousePosition = GetMousePosition();
         BeginDrawing();
         ClearBackground(RAYWHITE);
-
+        if (validator.maleOrFemale(currentUser))
+        {
+            DrawTexture(man, GetScreenWidth() / 2 + 250, GetScreenHeight() / 2 - 500, RAYWHITE);
+        }
+        else
+        {
+            DrawTexture(woman, GetScreenWidth() / 2 + 250, GetScreenHeight() / 2 - 500, RAYWHITE);
+        }
+        bool isMouseOverProfilePic = CheckCollisionPointRec(mousePosition, picToProfile);
+        if (isMouseOverProfilePic && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+        {
+            profile();
+        }
         DrawText("Marhaba, 6efa na Relefa", 50, 50, 20, DARKGRAY);
         DrawText("Good Afternoon", 50, 80, 18, GRAY);
 

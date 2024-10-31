@@ -37,8 +37,8 @@ void signup()
 
     const Rectangle repeatPasswordBox = { GetScreenWidth() / 2- 350, GetScreenHeight() / 2 +180, 550, 65 };
 
-    const Rectangle genderBoxMale = { GetScreenWidth() / 2- 350 , GetScreenHeight() / 2 +250, 100, 65 };
-    const Rectangle genderBoxFemale = { GetScreenWidth() / 2- 275, GetScreenHeight() / 2 +245, 100, 65 };
+    const Rectangle genderBoxMale = { GetScreenWidth() / 2 - 350 , GetScreenHeight() / 2 + 250, 65, 80 };
+    const Rectangle genderBoxFemale = { GetScreenWidth() / 2 - 275, GetScreenHeight() / 2 + 245, 65, 80 };
 
     Rectangle inputBoxes[] = { usernameBox, passwordBox, repeatPasswordBox };
 

@@ -12,7 +12,7 @@ void profile()
     const Rectangle budgetButton = { 280, 970, 140, 75 };
     const Rectangle statisticsButton = { 510, 970, 140, 75 };
     const Rectangle profileButton = { 740, 970, 140, 75 };
-
+    Texture2D profileTemplate = LoadTexture("../images/mprofile.png");
     SetTargetFPS(60);
 
     while (!WindowShouldClose())
@@ -23,7 +23,7 @@ void profile()
         ClearBackground(RAYWHITE);
 
         DrawRectangle(0, 930, 900, 200, BLACK);
-
+        DrawTexture(profileTemplate, 0, 0, RAYWHITE);
         bool isMouseOverDashboardButton = CheckCollisionPointRec(mousePosition, dashboardButton);
         DrawRectangleRounded(dashboardButton, 10, int(2), (isMouseOverDashboardButton ? DARKGRAY : LIGHTGRAY));
         if (CheckCollisionPointRec(mousePosition, dashboardButton) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {

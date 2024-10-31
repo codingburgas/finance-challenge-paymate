@@ -35,6 +35,27 @@ const bool Validate::isPasswordCorrect(const string& targetUsername, const strin
     return false; // Return false if the target username and password are not found
 }
 
+const bool Validate::maleOrFemale(const string& targetUsername) {
+    ifstream file("../data/accounts.csv"); // Open the accounts file
+    string line;
+    string storedUsername, skipPass, gender;
+    while (getline(file, line)) { // Read each line in the file
+        istringstream iss(line);
+        if (getline(iss, storedUsername, ',') && getline(iss, skipPass, ',') && getline(iss, gender, ',')) { // Extract the stored username from the line
+            if (storedUsername == targetUsername) {
+                if (gender == "male") {
+                    return true;
+                }
+                else if (gender == "female")
+                {
+                    return false;
+                }
+            }
+        }
+    }
+
+
+}
 
 // Check if the password contains at least one uppercase letter.
 bool Validate::containsUppercase(const string& password) {
