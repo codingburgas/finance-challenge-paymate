@@ -172,24 +172,75 @@ void statistics()
         // Display a specific message based on which expense is the highest
         switch (maxIndex) 
         {
-        case 0:
-            DrawText("Highest expense: Housing", xOffset - 70, yOffset + 100, 20, RED);
+        case 0: //Highest expense in housing
+            DrawText("Highest expense: Housing", xOffset - 70, yOffset + 80, 20, RED);
+
+            //First tip
+            DrawText("1. Evaluate Subscription Plans and Utility Usage: Review your internet,", xOffset - 50, yOffset + 130, 20, DARKGRAY);
+            DrawText("phone, and utility plans to see if there are cheaper options that fit your", xOffset - 50, yOffset + 160, 20, DARKGRAY);
+            DrawText("usage better. Adjust settings to use less electricity and water (e.g.,", xOffset - 50, yOffset + 190, 20, DARKGRAY);
+            DrawText(" energy-efficient bulbs, shorter showers) to lower monthly bills. ", xOffset - 50, yOffset + 220, 20, DARKGRAY);
+            
+            //Second tip
+            DrawText("2. Consider a Budget or Downsize: If rent or mortgage is taking up too ", xOffset - 50, yOffset + 270, 20, DARKGRAY);
+            DrawText("much of your income, consider creating a detailed budget to identify areas", xOffset - 50, yOffset + 300, 20, DARKGRAY);
+            DrawText("for saving, or explore downsizing to a smaller, more affordable space if", xOffset - 50, yOffset + 330, 20, DARKGRAY);
+            DrawText("possible.", xOffset - 50, yOffset + 360, 20, DARKGRAY);
+
             break;
 
-        case 1:
-            DrawText("Highest expense: Food", xOffset, yOffset + 100, 20, RED);
+        case 1: //Highest expense in ood
+            DrawText("Highest expense: Food", xOffset - 70, yOffset + 80, 20, RED);
+
+            //First tip
+            DrawText("1. Plan and Track Purchases: Set a weekly or monthly budget for", xOffset - 50, yOffset + 130, 20, DARKGRAY);
+            DrawText("each of these categories. Use an app or keep a simple list to track ", xOffset - 50, yOffset + 160, 20, DARKGRAY);
+            DrawText("your spending, so you can make adjustments before going over budget.", xOffset - 50, yOffset + 190, 20, DARKGRAY);
+
+            //Second tip
+            DrawText("2. Limit Convenience Purchases: For non-essential items like coffee,  ", xOffset - 50, yOffset + 240, 20, DARKGRAY);
+            DrawText("delivery, and eating out, try setting a rule to limit these purchases to", xOffset - 50, yOffset + 270, 20, DARKGRAY);
+            DrawText("once a week. Prep meals and snacks at home to save on both groceries", xOffset - 50, yOffset + 300, 20, DARKGRAY);
+            DrawText("and takeout!", xOffset - 50, yOffset + 330, 20, DARKGRAY);
+
             break;
 
-        case 2:
-            DrawText("Highest expense: Health", xOffset, yOffset + 100, 20, RED);
+        case 2: //Highest expense in health
+            DrawText("Highest expense: Health", xOffset - 70, yOffset + 80, 20, RED);
+
+            //First tip
+            DrawText("1. Create a Budget and Track Spending: Establish a budget specifically", xOffset - 50, yOffset + 130, 20, DARKGRAY);
+            DrawText(" for health and wellness expenses. Monitor your spending closely ", xOffset - 50, yOffset + 160, 20, DARKGRAY);
+            DrawText("to identify areas where you might reduce costs, such as opting for", xOffset - 50, yOffset + 190, 20, DARKGRAY);
+            DrawText("group fitness classes instead of personal training.", xOffset - 50, yOffset + 220, 20, DARKGRAY);
+
+            //Second tip
+            DrawText("2. Explore Alternatives and Resources: Research alternative options", xOffset - 50, yOffset + 270, 20, DARKGRAY);
+            DrawText("that might be more cost-effective. For example, consider community", xOffset - 50, yOffset + 300, 20, DARKGRAY);
+            DrawText("programs for fitness or mental health services, seek out free or ", xOffset - 50, yOffset + 330, 20, DARKGRAY);
+            DrawText("low-cost wellness workshops, or utilize online resources for workouts", xOffset - 50, yOffset + 360, 20, DARKGRAY);
+            DrawText("and therapy.", xOffset - 50, yOffset + 390, 20, DARKGRAY);
+
             break;
 
-        case 3:
-            DrawText("Highest expense: Gifts", xOffset, yOffset + 100, 20, RED);
+        case 3: //Highest expense in gifts
+            DrawText("Highest expense: Gifts", xOffset - 70, yOffset + 80, 20, RED);
+
+            //First tip
+            DrawText("1. Set a Budget: Determine a clear budget for gifts, donations, ", xOffset - 50, yOffset + 130, 20, DARKGRAY);
+            DrawText("and celebrations each month. Allocate specific amounts for each", xOffset - 50, yOffset + 160, 20, DARKGRAY);
+            DrawText("category, and stick to these limits to avoid overspending.", xOffset - 50, yOffset + 190, 20, DARKGRAY);
+
+            //Second tip
+            DrawText("2. Prioritize and Plan: Before making purchases, prioritize which", xOffset - 50, yOffset + 240, 20, DARKGRAY);
+            DrawText("gifts or events are most important. Plan ahead for larger expenses", xOffset - 50, yOffset + 270, 20, DARKGRAY);
+            DrawText("and consider alternatives like homemade gifts or smaller gatherings to ", xOffset - 50, yOffset + 300, 20, DARKGRAY);
+            DrawText("save money without sacrificing thoughtfulness.", xOffset - 50, yOffset + 330, 20, DARKGRAY);
+
             break;
 
         default:
-            DrawText("Error: Unable to determine highest expense", xOffset, yOffset + 100, 20, RED);
+            DrawText("Error: Unable to determine highest expense", xOffset - 70, yOffset + 120, 20, RED);
             break;
         }
 
