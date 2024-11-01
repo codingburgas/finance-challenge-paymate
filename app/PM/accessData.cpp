@@ -19,3 +19,13 @@ void DataAccess::addAccountInfo(const string& monhtlyIncome, const string& savin
     // Close the file
     file.close();
 }
+
+void DataAccess::diagramData(const string& username, const string& essentials, const string& security, const string& personal, const string& social) const
+{
+    // Open accounts.csv file
+    ofstream file("../data/diagramData.csv", ios_base::app);
+    // Write username and password
+    file << username << ',' << essentials << ',' << security << ',' << personal << ',' << social << "\n";
+    // Close the file
+    file.close();
+}

@@ -5,13 +5,29 @@
 #include "accessData.h"
 #include "validation.h"
 
-struct USER_DATA {
+struct USER_DATA
+{
     float monthlyIncome;
     float savings;
     float balance;
-    float growthRates;
-
 };
+
+
+// Save expenses to diagramData.csv
+void saveDiagramData(const char* expense1, const char* expense2, const char* expense3, const char* expense4)
+{
+    ofstream file("../data/diagramData.csv");
+    if (file.is_open())
+    {
+        file << expense1 << ',' << expense2 << ',' << expense3 << ',' << expense4 << "\n";
+        file.close();
+    }
+    else
+    {
+        cerr << "Error: Could not open diagramData.csv\n";
+    }
+}
+
 
 extern USER_DATA loadUserData();
 extern void updateBalance(float newBalance);
@@ -48,6 +64,7 @@ void budget() {
     Rectangle submitDataButton = { 500, 700, 140, 75 };
 
     USER_DATA userData = loadUserData();  // Load the user's data
+    DataAccess dataAccess;
     Texture2D manBigSize = LoadTexture("../images/m.png");
     Texture2D womanBigSize = LoadTexture("../images/w.png");
 
@@ -56,7 +73,7 @@ void budget() {
     Image manImage = LoadImage("../images/m.png");
     Image womanImage = LoadImage("../images/w.png");
     ImageResize(&manImage, newWidth - 15, newHeight);
-    ImageResize(&womanImage, newWidth , newHeight);
+    ImageResize(&womanImage, newWidth, newHeight);
     Texture2D man = LoadTextureFromImage(manImage);
     Texture2D woman = LoadTextureFromImage(womanImage);
     UnloadImage(manImage);
@@ -64,6 +81,7 @@ void budget() {
 
     Validate validator;
     const Rectangle picToProfile = { GetScreenWidth() / 2 + 250, GetScreenHeight() / 2 - 500, man.width, man.height };
+
     SetTargetFPS(60);
 
     while (!WindowShouldClose()) {
@@ -177,35 +195,45 @@ void budget() {
         DrawRectangleRounded(submitDataButton, 0.2, 10, DARKBLUE);
         DrawText("Submit", submitDataButton.x + 15, submitDataButton.y + 20, 25, RAYWHITE);
 
-        if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && CheckCollisionPointRec(mousePosition, submitDataButton)) {
-            try {
+        if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && CheckCollisionPointRec(mousePosition, submitDataButton))
+        {
+            try
+            {
+                // Save expenses to diagramData.csv
+                saveDiagramData(input1, input2, input3, input4);
                 // Calculate total expenses and update balance
                 float totalExpense = stof(input1) + stof(input2) + stof(input3) + stof(input4);
                 userData.balance -= totalExpense;  // Deduct expenses from balance
                 updateBalance(userData.balance);   // Save updated balance to CSV
             }
-            catch (const std::invalid_argument& e) {
-                std::cerr << "Error: Invalid input for expenses\n";
+
+            catch (const invalid_argument& e)
+            {
+                cerr << "Error: Invalid input for expenses\n";
             }
         }
 
         // Draw navigation buttons
         bool isMouseOverDashboardButton = CheckCollisionPointRec(mousePosition, dashboardButton);
         DrawRectangleRounded(dashboardButton, 10, int(2), (isMouseOverDashboardButton ? DARKGRAY : LIGHTGRAY));
-        if (isMouseOverDashboardButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+
+        if (isMouseOverDashboardButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+        {
             dashboard();
         }
 
 
         bool isMouseOverStatisticsButton = CheckCollisionPointRec(mousePosition, statisticsButton);
         DrawRectangleRounded(statisticsButton, 10, int(2), (isMouseOverStatisticsButton ? DARKGRAY : LIGHTGRAY));
-        if (isMouseOverStatisticsButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+        if (isMouseOverStatisticsButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+        {
             statistics();
         }
 
         bool isMouseOverBudgetButton = CheckCollisionPointRec(mousePosition, budgetButton);
         DrawRectangleRounded(budgetButton, 10, int(2), (isMouseOverBudgetButton ? DARKGRAY : LIGHTGRAY));
-        if (isMouseOverBudgetButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+        if (isMouseOverBudgetButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+        {
             ;
         }
 

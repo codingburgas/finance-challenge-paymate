@@ -5,84 +5,63 @@
 #include "accessData.h"
 #include "validation.h"
 
-struct USER_DATA {
+struct USER_DATA
+{
     float monthlyIncome;
     float savings;
     float balance;
-    float growthRates;
 };
-
-void generateUserData()
-{
-    string monthlyIncome = "0";
-    string savings = "0";
-    string balance = "0";
-    string growthRates = "0";
-    rapidcsv::Document accountData("../data/accountData.csv");
-    int rowCount = accountData.GetRowCount();
-    accountData.SetRow<string>(rowCount, { (string)currentUser, monthlyIncome, savings, balance, growthRates });
-    accountData.Save("../data/accountData.csv");
-}
-
-bool userDataExist()
-{
-    rapidcsv::Document accountData("../data/accountData.csv");
-    vector<string> users = accountData.GetColumn<string>("username");
-    return find(users.begin(), users.end(), (string)currentUser) != users.end();
-}
 
 USER_DATA loadUserData()
 {
-    if (!userDataExist())
-    {
-        generateUserData();
-    }
-
     USER_DATA userData;
     rapidcsv::Document accountData("../data/accountData.csv");
 
-    try {
+    try
+    {
         vector<string> usernames = accountData.GetColumn<string>("username");
         int userRow = -1;
-        for (int i = 0; i < usernames.size(); i++) {
-            if (usernames[i] == currentUser) {
+        for (int i = 0; i < usernames.size(); i++)
+        {
+            if (usernames[i] == currentUser)
+            {
                 userRow = i;
                 break;
             }
         }
-        if (userRow != -1) {
+
+        if (userRow != -1)
+        {
             userData.monthlyIncome = stof(accountData.GetCell<string>("monthlyIncome", userRow));
             userData.savings = stof(accountData.GetCell<string>("savings", userRow));
             userData.balance = stof(accountData.GetCell<string>("balance", userRow));
-            userData.growthRates = stof(accountData.GetCell<string>("growthRates", userRow));
         }
     }
-    catch (const std::out_of_range& e) {
-        std::cerr << "Error: " << e.what() << '\n';
-        // Set default values or handle error accordingly
-        userData.monthlyIncome = 0.0f;
-        userData.savings = 0.0f;
-        userData.balance = 0.0f;
-        userData.growthRates = 0.0f;
+    catch (const exception& e)
+    {
+        cerr << "Error loading user data: " << e.what() << '\n';
     }
-
     return userData;
 }
 
-void updateBalance(float newBalance) {
+void updateBalance(float newBalance)
+{
     rapidcsv::Document accountData("../data/accountData.csv");
 
     vector<string> usernames = accountData.GetColumn<string>("username");
     int userRow = -1;
-    for (int i = 0; i < usernames.size(); i++) {
-        if (usernames[i] == currentUser) {
+    for (int i = 0; i < usernames.size(); i++)
+    {
+        if (usernames[i] == currentUser)
+        {
             userRow = i;
             break;
         }
     }
 
-    if (userRow != -1) {
-        accountData.SetCell("balance", userRow, std::to_string(newBalance));
+    if (userRow != -1)
+    {
+        accountData.SetCell("balance", userRow, to_string(newBalance));
         accountData.Save("../data/accountData.csv");
     }
 }
@@ -107,22 +86,28 @@ void dashboard()
     const Rectangle statisticsButton = { 610, 970, 140, 75 };
 
     USER_DATA userData = loadUserData();
+
     Texture2D manBigSize = LoadTexture("../images/m.png");
     Texture2D womanBigSize = LoadTexture("../images/w.png");
 
-    int newWidth = manBigSize.width / 2+30;
+    int newWidth = manBigSize.width / 2 + 30;
     int newHeight = manBigSize.height / 2;
+
     Image manImage = LoadImage("../images/m.png");
     Image womanImage = LoadImage("../images/w.png");
+
     ImageResize(&manImage, newWidth - 15, newHeight);
     ImageResize(&womanImage, newWidth, newHeight);
+
     Texture2D man = LoadTextureFromImage(manImage);
     Texture2D woman = LoadTextureFromImage(womanImage);
+
     UnloadImage(manImage);
     UnloadImage(womanImage);
 
     Validate validator;
     const Rectangle picToProfile = { GetScreenWidth() / 2 + 250, GetScreenHeight() / 2 - 500, man.width, man.height };
+
     SetTargetFPS(60);
 
     while (!WindowShouldClose())
@@ -156,6 +141,7 @@ void dashboard()
 
         BeginDrawing();
         ClearBackground(RAYWHITE);
+
         DrawRectangle(0, 930, 900, 200, BLACK);
         if (validator.maleOrFemale(currentUser))
         {
@@ -165,11 +151,14 @@ void dashboard()
         {
             DrawTexture(woman, GetScreenWidth() / 2 + 250, GetScreenHeight() / 2 - 500, RAYWHITE);
         }
+
         bool isMouseOverProfilePic = CheckCollisionPointRec(mousePosition, picToProfile);
+
         if (isMouseOverProfilePic && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         {
             profile();
         }
+
         DrawText("Hello, ", 50, 80, 80, DARKGRAY);
         DrawText(currentUser, 300, 80, 80, DARKGRAY);
 
@@ -187,16 +176,20 @@ void dashboard()
         DrawText("Enter Wage:", wageInputBox.x, wageInputBox.y - 30, 20, DARKGRAY);
         DrawText(wageInput, wageInputBox.x + 5, wageInputBox.y + 8, 40, BLACK);
 
-        if (mouseOnWageInputBox && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-            try {
-                userData.balance = stof(wageInput);  // Update balance with wage input
+        if (mouseOnWageInputBox && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+        {
+            try
+            {
+                userData.balance += stof(wageInput);  // Update balance with wage input
                 updateBalance(userData.balance);  // Save new balance to CSV
             }
-            catch (const std::invalid_argument& e) {
-                std::cerr << "Error: Invalid input for wage\n";
+
+            catch (const invalid_argument& e)
+            {
+                cerr << "Error: Invalid input for wage\n";
             }
         }
-        
+
 
         // Navigation buttons
         bool isMouseOverDashboardButton = CheckCollisionPointRec(mousePosition, dashboardButton);
