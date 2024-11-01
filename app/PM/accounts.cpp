@@ -444,6 +444,8 @@ void startingScreen()
     const int screenHeight = 1080;
 
     InitWindow(screenWidth, screenHeight, "PM");
+    Image logo = LoadImage("../images/logo.png");
+    SetWindowIcon(logo);
 
     Vector2 loginButtonPosition = { GetScreenWidth() / 2 - 400, GetScreenHeight() / 2 - 450 };
 
@@ -451,11 +453,11 @@ void startingScreen()
 
     Vector2 exitButtonPosition = { GetScreenWidth() / 2 + 175, GetScreenHeight() / 2 + 425 };
 
-    const Rectangle loginButton = { loginButtonPosition.x, loginButtonPosition.y, 125, 100 };
+    const Rectangle loginButton = { loginButtonPosition.x, loginButtonPosition.y, 125, 50 };
 
-    const Rectangle signUpButton = { signUpButtonPosition.x, signUpButtonPosition.y, 200, 100 };
+    const Rectangle signUpButton = { signUpButtonPosition.x+50, signUpButtonPosition.y+25, 190, 50 };
 
-    const Rectangle exitButton = { exitButtonPosition.x, exitButtonPosition.y, 200, 100 };
+    const Rectangle exitButton = { exitButtonPosition.x+90, exitButtonPosition.y+20, 115, 50 };
 
     Texture2D background = LoadTexture("../images/homepage.png");
 
@@ -473,9 +475,11 @@ void startingScreen()
 
         DrawTexture(background, 0, 0, RAYWHITE);
 
+       
+
         bool isMouseOverLoginButton = CheckCollisionPointRec(mousePosition, loginButton);
 
-        DrawText("Login", loginButtonPosition.x, loginButtonPosition.y, 50, isMouseOverLoginButton ? RED : WHITE);
+        DrawText("Log in", loginButtonPosition.x, loginButtonPosition.y, 50, isMouseOverLoginButton ? RED : WHITE);
 
         if (CheckCollisionPointRec(mousePosition, loginButton) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
 
@@ -503,7 +507,7 @@ void startingScreen()
             return;
 
         }
-
+        
         EndDrawing();
 
     }

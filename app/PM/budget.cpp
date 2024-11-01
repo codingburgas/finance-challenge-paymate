@@ -3,6 +3,7 @@
 #include "statistics.h"
 #include "profile.h"
 #include "accessData.h"
+#include "validation.h"
 
 struct USER_DATA {
     float monthlyIncome;
@@ -19,10 +20,10 @@ void budget() {
     const int screenWidth = 900;
     const int screenHeight = 1080;
 
-    const Rectangle dashboardButton = { 50, 970, 140, 75 };
-    const Rectangle budgetButton = { 280, 970, 140, 75 };
-    const Rectangle statisticsButton = { 510, 970, 140, 75 };
-    const Rectangle profileButton = { 740, 970, 140, 75 };
+
+    const Rectangle dashboardButton = { 150, 970, 140, 75 };
+    const Rectangle budgetButton = { 380, 970, 140, 75 };
+    const Rectangle statisticsButton = { 610, 970, 140, 75 };
 
     // Input box variables for four expenses
     char input1[25] = "\0";
@@ -47,7 +48,22 @@ void budget() {
     Rectangle submitDataButton = { 500, 700, 140, 75 };
 
     USER_DATA userData = loadUserData();  // Load the user's data
+    Texture2D manBigSize = LoadTexture("../images/m.png");
+    Texture2D womanBigSize = LoadTexture("../images/w.png");
 
+    int newWidth = manBigSize.width / 2 + 30;
+    int newHeight = manBigSize.height / 2;
+    Image manImage = LoadImage("../images/m.png");
+    Image womanImage = LoadImage("../images/w.png");
+    ImageResize(&manImage, newWidth - 15, newHeight);
+    ImageResize(&womanImage, newWidth , newHeight);
+    Texture2D man = LoadTextureFromImage(manImage);
+    Texture2D woman = LoadTextureFromImage(womanImage);
+    UnloadImage(manImage);
+    UnloadImage(womanImage);
+
+    Validate validator;
+    const Rectangle picToProfile = { GetScreenWidth() / 2 + 250, GetScreenHeight() / 2 - 500, man.width, man.height };
     SetTargetFPS(60);
 
     while (!WindowShouldClose()) {
@@ -127,8 +143,20 @@ void budget() {
         }
 
         ClearBackground(RAYWHITE);
-
-        // Draw input boxes
+        DrawRectangle(0, 930, 900, 200, BLACK);
+        if (validator.maleOrFemale(currentUser))
+        {
+            DrawTexture(man, GetScreenWidth() / 2 + 250, GetScreenHeight() / 2 - 500, RAYWHITE);
+        }
+        else
+        {
+            DrawTexture(woman, GetScreenWidth() / 2 + 250, GetScreenHeight() / 2 - 500, RAYWHITE);
+        }
+        bool isMouseOverProfilePic = CheckCollisionPointRec(mousePosition, picToProfile);
+        if (isMouseOverProfilePic && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+        {
+            profile();
+        }
         DrawRectangleRec(inputBox1, LIGHTGRAY);
         DrawText("Expense 1:", inputBox1.x, inputBox1.y - 30, 20, DARKGRAY);
         DrawText(input1, inputBox1.x + 5, inputBox1.y + 8, 40, BLACK);
@@ -168,8 +196,6 @@ void budget() {
             dashboard();
         }
 
-        bool isMouseOverBudgetButton = CheckCollisionPointRec(mousePosition, budgetButton);
-        DrawRectangleRounded(budgetButton, 10, int(2), (isMouseOverBudgetButton ? DARKGRAY : LIGHTGRAY));
 
         bool isMouseOverStatisticsButton = CheckCollisionPointRec(mousePosition, statisticsButton);
         DrawRectangleRounded(statisticsButton, 10, int(2), (isMouseOverStatisticsButton ? DARKGRAY : LIGHTGRAY));
@@ -177,10 +203,10 @@ void budget() {
             statistics();
         }
 
-        bool isMouseOverProfileButton = CheckCollisionPointRec(mousePosition, profileButton);
-        DrawRectangleRounded(profileButton, 10, int(2), (isMouseOverProfileButton ? DARKGRAY : LIGHTGRAY));
-        if (isMouseOverProfileButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-            profile();
+        bool isMouseOverBudgetButton = CheckCollisionPointRec(mousePosition, budgetButton);
+        DrawRectangleRounded(budgetButton, 10, int(2), (isMouseOverBudgetButton ? DARKGRAY : LIGHTGRAY));
+        if (isMouseOverBudgetButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            ;
         }
 
         EndDrawing();

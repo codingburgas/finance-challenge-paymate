@@ -101,10 +101,10 @@ void dashboard()
     Rectangle balanceBox = { 50, 200, 300, 100 };
     Rectangle savingsBox = { 380, 200, 300, 100 };
 
-    const Rectangle dashboardButton = { 50, 970, 140, 75 };
-    const Rectangle budgetButton = { 280, 970, 140, 75 };
-    const Rectangle statisticsButton = { 510, 970, 140, 75 };
-    const Rectangle profileButton = { 740, 970, 140, 75 };
+
+    const Rectangle dashboardButton = { 150, 970, 140, 75 };
+    const Rectangle budgetButton = { 380, 970, 140, 75 };
+    const Rectangle statisticsButton = { 610, 970, 140, 75 };
 
     USER_DATA userData = loadUserData();
     Texture2D manBigSize = LoadTexture("../images/m.png");
@@ -114,7 +114,7 @@ void dashboard()
     int newHeight = manBigSize.height / 2;
     Image manImage = LoadImage("../images/m.png");
     Image womanImage = LoadImage("../images/w.png");
-    ImageResize(&manImage, newWidth, newHeight);
+    ImageResize(&manImage, newWidth - 15, newHeight);
     ImageResize(&womanImage, newWidth, newHeight);
     Texture2D man = LoadTextureFromImage(manImage);
     Texture2D woman = LoadTextureFromImage(womanImage);
@@ -156,6 +156,7 @@ void dashboard()
 
         BeginDrawing();
         ClearBackground(RAYWHITE);
+        DrawRectangle(0, 930, 900, 200, BLACK);
         if (validator.maleOrFemale(currentUser))
         {
             DrawTexture(man, GetScreenWidth() / 2 + 250, GetScreenHeight() / 2 - 500, RAYWHITE);
@@ -195,10 +196,15 @@ void dashboard()
                 std::cerr << "Error: Invalid input for wage\n";
             }
         }
+        
 
         // Navigation buttons
         bool isMouseOverDashboardButton = CheckCollisionPointRec(mousePosition, dashboardButton);
+
         DrawRectangleRounded(dashboardButton, 10, int(2), (isMouseOverDashboardButton ? DARKGRAY : LIGHTGRAY));
+        if (isMouseOverDashboardButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            ;
+        }
 
         bool isMouseOverBudgetButton = CheckCollisionPointRec(mousePosition, budgetButton);
         DrawRectangleRounded(budgetButton, 10, int(2), (isMouseOverBudgetButton ? DARKGRAY : LIGHTGRAY));
@@ -212,11 +218,6 @@ void dashboard()
             statistics();
         }
 
-        bool isMouseOverProfileButton = CheckCollisionPointRec(mousePosition, profileButton);
-        DrawRectangleRounded(profileButton, 10, int(2), (isMouseOverProfileButton ? DARKGRAY : LIGHTGRAY));
-        if (isMouseOverProfileButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-            profile();
-        }
 
         EndDrawing();
     }
