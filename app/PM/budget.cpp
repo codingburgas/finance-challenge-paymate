@@ -5,32 +5,109 @@
 #include "accessData.h"
 #include "validation.h"
 
-struct USER_DATA
-{
+struct USER_DATA {
     float monthlyIncome;
     float savings;
     float balance;
+    float growthRates;
+
 };
 
-
 // Save expenses to diagramData.csv
-void saveDiagramData(const char* expense1, const char* expense2, const char* expense3, const char* expense4)
+void saveDiagramData(const char* username, const char* housing, const char* food, const char* health, const char* gifts) 
 {
-    ofstream file("../data/diagramData.csv");
-    if (file.is_open())
+    string filePath = "../data/diagramData.csv";
+    ifstream inputFile(filePath);
+    vector<string> lines;
+    
+    bool userExists = false;
+
+    // Read all lines into memory and look for the username
+    if (inputFile.is_open())
     {
-        file << expense1 << ',' << expense2 << ',' << expense3 << ',' << expense4 << "\n";
-        file.close();
+        string line;
+       
+        while (getline(inputFile, line)) 
+        {
+            istringstream lineStream(line);
+            string existingUsername;
+            getline(lineStream, existingUsername, ',');
+
+            // Check if the username exists
+            if (existingUsername == username) 
+            {
+                // Replace this line with the new data
+                string updatedLine = string(username) + ',' + housing + ',' + food + ',' + health + ',' + gifts;
+                lines.push_back(updatedLine);
+                userExists = true;
+            }
+
+            else 
+            {
+                lines.push_back(line);  // Keep other lines as is
+            }
+        }
+
+        inputFile.close();
     }
-    else
+
+    else 
     {
         cerr << "Error: Could not open diagramData.csv\n";
+        return;
+    }
+
+    // If the user was not found, append the new user data
+    if (!userExists) 
+    {
+        string newLine = string(username) + ',' + housing + ',' + food + ',' + health + ',' + gifts;
+        lines.push_back(newLine);
+    }
+
+    // Write all lines back to the file
+    ofstream outputFile(filePath);
+    if (outputFile.is_open()) 
+    {
+        for (const string& line : lines) 
+        {
+            outputFile << line << "\n";
+        }
+        outputFile.close();
+    }
+
+    else 
+    {
+        cerr << "Error: Could not open diagramData.csv for writing\n";
     }
 }
 
-
+extern USER_DATA generateUserData();
 extern USER_DATA loadUserData();
+
+extern bool userDataExist();
+
 extern void updateBalance(float newBalance);
+
+void updateDiagram(float newDiagram) 
+{
+    rapidcsv::Document diagramData("../data/diagramData.csv");
+
+    vector<string> usernames = diagramData.GetColumn<string>("username");
+    int userRow = -1;
+    for (int i = 0; i < usernames.size(); i++) 
+    {
+        if (usernames[i] == currentUser) 
+        {
+            userRow = i;
+            break;
+        }
+    }
+
+    if (userRow != -1) {
+        diagramData.SetCell("username", userRow, to_string(newDiagram));
+        diagramData.Save("../data/diagramData.csv");
+    }
+}
 
 void budget() {
     const int screenWidth = 900;
@@ -64,27 +141,32 @@ void budget() {
     Rectangle submitDataButton = { 500, 700, 140, 75 };
 
     USER_DATA userData = loadUserData();  // Load the user's data
+
     DataAccess dataAccess;
+
     Texture2D manBigSize = LoadTexture("../images/m.png");
     Texture2D womanBigSize = LoadTexture("../images/w.png");
 
     int newWidth = manBigSize.width / 2 + 30;
     int newHeight = manBigSize.height / 2;
+
     Image manImage = LoadImage("../images/m.png");
     Image womanImage = LoadImage("../images/w.png");
+
     ImageResize(&manImage, newWidth - 15, newHeight);
     ImageResize(&womanImage, newWidth, newHeight);
+
     Texture2D man = LoadTextureFromImage(manImage);
     Texture2D woman = LoadTextureFromImage(womanImage);
-    UnloadImage(manImage);
-    UnloadImage(womanImage);
 
     Validate validator;
+
     const Rectangle picToProfile = { GetScreenWidth() / 2 + 250, GetScreenHeight() / 2 - 500, man.width, man.height };
 
     SetTargetFPS(60);
 
-    while (!WindowShouldClose()) {
+    while (!WindowShouldClose())
+    {
         Vector2 mousePosition = GetMousePosition();
 
         BeginDrawing();
@@ -96,85 +178,112 @@ void budget() {
         mouseOnInputBox4 = CheckCollisionPointRec(mousePosition, inputBox4);
 
         // Set mouse cursor
-        if (mouseOnInputBox1 || mouseOnInputBox2 || mouseOnInputBox3 || mouseOnInputBox4) {
+        if (mouseOnInputBox1 || mouseOnInputBox2 || mouseOnInputBox3 || mouseOnInputBox4)
+        {
             SetMouseCursor(MOUSE_CURSOR_IBEAM);
         }
-        else {
+
+        else
+        {
             SetMouseCursor(MOUSE_CURSOR_DEFAULT);
         }
 
         // Handle input for each box
-        if (mouseOnInputBox1) {
+        if (mouseOnInputBox1)
+        {
             int key = GetCharPressed();
-            while (key > 0) {
-                if ((key >= 32) && (key <= 125) && (inputBox1LetterCount < 24)) {
+            while (key > 0)
+            {
+                if ((key >= 32) && (key <= 125) && (inputBox1LetterCount < 24))
+                {
                     input1[inputBox1LetterCount++] = (char)key;
                     input1[inputBox1LetterCount] = '\0'; // Null-terminate the string
                 }
                 key = GetCharPressed();
             }
-            if (IsKeyPressed(KEY_BACKSPACE) && inputBox1LetterCount > 0) {
+
+            if (IsKeyPressed(KEY_BACKSPACE) && inputBox1LetterCount > 0)
+            {
                 input1[--inputBox1LetterCount] = '\0';
             }
         }
 
-        if (mouseOnInputBox2) {
+        if (mouseOnInputBox2)
+        {
             int key = GetCharPressed();
-            while (key > 0) {
-                if ((key >= 32) && (key <= 125) && (inputBox2LetterCount < 24)) {
+            while (key > 0)
+            {
+                if ((key >= 32) && (key <= 125) && (inputBox2LetterCount < 24))
+                {
                     input2[inputBox2LetterCount++] = (char)key;
                     input2[inputBox2LetterCount] = '\0';
                 }
                 key = GetCharPressed();
             }
-            if (IsKeyPressed(KEY_BACKSPACE) && inputBox2LetterCount > 0) {
+
+            if (IsKeyPressed(KEY_BACKSPACE) && inputBox2LetterCount > 0)
+            {
                 input2[--inputBox2LetterCount] = '\0';
             }
         }
 
-        if (mouseOnInputBox3) {
+        if (mouseOnInputBox3)
+        {
             int key = GetCharPressed();
-            while (key > 0) {
-                if ((key >= 32) && (key <= 125) && (inputBox3LetterCount < 24)) {
+            while (key > 0)
+            {
+                if ((key >= 32) && (key <= 125) && (inputBox3LetterCount < 24))
+                {
                     input3[inputBox3LetterCount++] = (char)key;
                     input3[inputBox3LetterCount] = '\0';
                 }
                 key = GetCharPressed();
             }
-            if (IsKeyPressed(KEY_BACKSPACE) && inputBox3LetterCount > 0) {
+            if (IsKeyPressed(KEY_BACKSPACE) && inputBox3LetterCount > 0)
+            {
                 input3[--inputBox3LetterCount] = '\0';
             }
         }
 
-        if (mouseOnInputBox4) {
+        if (mouseOnInputBox4)
+        {
             int key = GetCharPressed();
-            while (key > 0) {
-                if ((key >= 32) && (key <= 125) && (inputBox4LetterCount < 24)) {
+            while (key > 0)
+            {
+                if ((key >= 32) && (key <= 125) && (inputBox4LetterCount < 24))
+                {
                     input4[inputBox4LetterCount++] = (char)key;
                     input4[inputBox4LetterCount] = '\0';
                 }
                 key = GetCharPressed();
             }
-            if (IsKeyPressed(KEY_BACKSPACE) && inputBox4LetterCount > 0) {
+            if (IsKeyPressed(KEY_BACKSPACE) && inputBox4LetterCount > 0)
+            {
                 input4[--inputBox4LetterCount] = '\0';
             }
         }
 
         ClearBackground(RAYWHITE);
+
         DrawRectangle(0, 930, 900, 200, BLACK);
+
         if (validator.maleOrFemale(currentUser))
         {
             DrawTexture(man, GetScreenWidth() / 2 + 250, GetScreenHeight() / 2 - 500, RAYWHITE);
         }
+
         else
         {
             DrawTexture(woman, GetScreenWidth() / 2 + 250, GetScreenHeight() / 2 - 500, RAYWHITE);
         }
+
         bool isMouseOverProfilePic = CheckCollisionPointRec(mousePosition, picToProfile);
+
         if (isMouseOverProfilePic && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         {
             profile();
         }
+
         DrawRectangleRec(inputBox1, LIGHTGRAY);
         DrawText("Expense 1:", inputBox1.x, inputBox1.y - 30, 20, DARKGRAY);
         DrawText(input1, inputBox1.x + 5, inputBox1.y + 8, 40, BLACK);
@@ -200,7 +309,7 @@ void budget() {
             try
             {
                 // Save expenses to diagramData.csv
-                saveDiagramData(input1, input2, input3, input4);
+                saveDiagramData(currentUser, input1, input2, input3, input4);
                 // Calculate total expenses and update balance
                 float totalExpense = stof(input1) + stof(input2) + stof(input3) + stof(input4);
                 userData.balance -= totalExpense;  // Deduct expenses from balance
@@ -222,7 +331,6 @@ void budget() {
             dashboard();
         }
 
-
         bool isMouseOverStatisticsButton = CheckCollisionPointRec(mousePosition, statisticsButton);
         DrawRectangleRounded(statisticsButton, 10, int(2), (isMouseOverStatisticsButton ? DARKGRAY : LIGHTGRAY));
         if (isMouseOverStatisticsButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
@@ -239,4 +347,9 @@ void budget() {
 
         EndDrawing();
     }
+
+    UnloadTexture(manBigSize);
+    UnloadTexture(womanBigSize);
+    UnloadTexture(man);
+    UnloadTexture(woman);
 }

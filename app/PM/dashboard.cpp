@@ -5,52 +5,90 @@
 #include "accessData.h"
 #include "validation.h"
 
-struct USER_DATA
+struct USER_DATA 
 {
     float monthlyIncome;
     float savings;
     float balance;
+    float growthRates;
 };
+
+void generateUserData()
+{
+    string monthlyIncome = "0";
+    string savings = "0";
+    string balance = "0";
+    string growthRates = "0";
+
+    rapidcsv::Document accountData("../data/accountData.csv");
+
+    int rowCount = accountData.GetRowCount();
+
+    accountData.SetRow<string>(rowCount, { (string)currentUser, monthlyIncome, savings, balance, growthRates });
+    accountData.Save("../data/accountData.csv");
+}
+
+bool userDataExist()
+{
+    rapidcsv::Document accountData("../data/accountData.csv");
+    vector<string> users = accountData.GetColumn<string>("username");
+    return find(users.begin(), users.end(), (string)currentUser) != users.end();
+}
 
 USER_DATA loadUserData()
 {
+    if (!userDataExist())
+    {
+        generateUserData();
+    }
+
     USER_DATA userData;
     rapidcsv::Document accountData("../data/accountData.csv");
 
-    try
+    try 
     {
         vector<string> usernames = accountData.GetColumn<string>("username");
         int userRow = -1;
+       
         for (int i = 0; i < usernames.size(); i++)
         {
-            if (usernames[i] == currentUser)
+            if (usernames[i] == currentUser) 
             {
                 userRow = i;
                 break;
             }
         }
-
-        if (userRow != -1)
+        if (userRow != -1) 
         {
             userData.monthlyIncome = stof(accountData.GetCell<string>("monthlyIncome", userRow));
             userData.savings = stof(accountData.GetCell<string>("savings", userRow));
             userData.balance = stof(accountData.GetCell<string>("balance", userRow));
+            userData.growthRates = stof(accountData.GetCell<string>("growthRates", userRow));
         }
     }
-    catch (const exception& e)
+
+    catch (const out_of_range& e) 
     {
-        cerr << "Error loading user data: " << e.what() << '\n';
+        cerr << "Error: " << e.what() << '\n';
+        
+        // Set default values or handle error accordingly
+        userData.monthlyIncome = 0.0f;
+        userData.savings = 0.0f;
+        userData.balance = 0.0f;
+        userData.growthRates = 0.0f;
     }
+
     return userData;
 }
 
-void updateBalance(float newBalance)
+void updateBalance(float newBalance) 
 {
     rapidcsv::Document accountData("../data/accountData.csv");
 
     vector<string> usernames = accountData.GetColumn<string>("username");
     int userRow = -1;
-    for (int i = 0; i < usernames.size(); i++)
+   
+    for (int i = 0; i < usernames.size(); i++) 
     {
         if (usernames[i] == currentUser)
         {
@@ -59,7 +97,7 @@ void updateBalance(float newBalance)
         }
     }
 
-    if (userRow != -1)
+    if (userRow != -1) 
     {
         accountData.SetCell("balance", userRow, to_string(newBalance));
         accountData.Save("../data/accountData.csv");
@@ -79,7 +117,6 @@ void dashboard()
 
     Rectangle balanceBox = { 50, 200, 300, 100 };
     Rectangle savingsBox = { 380, 200, 300, 100 };
-
 
     const Rectangle dashboardButton = { 150, 970, 140, 75 };
     const Rectangle budgetButton = { 380, 970, 140, 75 };
@@ -102,10 +139,8 @@ void dashboard()
     Texture2D man = LoadTextureFromImage(manImage);
     Texture2D woman = LoadTextureFromImage(womanImage);
 
-    UnloadImage(manImage);
-    UnloadImage(womanImage);
-
     Validate validator;
+
     const Rectangle picToProfile = { GetScreenWidth() / 2 + 250, GetScreenHeight() / 2 - 500, man.width, man.height };
 
     SetTargetFPS(60);
@@ -119,12 +154,15 @@ void dashboard()
         if (CheckCollisionPointRec(mousePosition, wageInputBox)) mouseOnWageInputBox = true;
         else mouseOnWageInputBox = false;
 
-        if (mouseOnWageInputBox) {
+        if (mouseOnWageInputBox) 
+        {
             SetMouseCursor(MOUSE_CURSOR_IBEAM);
 
             int key = GetCharPressed();
-            while (key > 0) {
-                if ((key >= 32) && (key <= 125) && (wageInputLetterCount < 25)) {
+            while (key > 0) 
+            {
+                if ((key >= 32) && (key <= 125) && (wageInputLetterCount < 25))
+                {
                     wageInput[wageInputLetterCount] = (char)key;
                     wageInput[wageInputLetterCount + 1] = '\0';
                     wageInputLetterCount++;
@@ -132,7 +170,8 @@ void dashboard()
                 key = GetCharPressed();
             }
 
-            if (IsKeyPressed(KEY_BACKSPACE)) {
+            if (IsKeyPressed(KEY_BACKSPACE))
+            {
                 wageInputLetterCount--;
                 if (wageInputLetterCount < 0) wageInputLetterCount = 0;
                 wageInput[wageInputLetterCount] = '\0';
@@ -140,13 +179,16 @@ void dashboard()
         }
 
         BeginDrawing();
+
         ClearBackground(RAYWHITE);
 
         DrawRectangle(0, 930, 900, 200, BLACK);
+
         if (validator.maleOrFemale(currentUser))
         {
             DrawTexture(man, GetScreenWidth() / 2 + 250, GetScreenHeight() / 2 - 500, RAYWHITE);
         }
+
         else
         {
             DrawTexture(woman, GetScreenWidth() / 2 + 250, GetScreenHeight() / 2 - 500, RAYWHITE);
@@ -190,28 +232,34 @@ void dashboard()
             }
         }
 
-
         // Navigation buttons
         bool isMouseOverDashboardButton = CheckCollisionPointRec(mousePosition, dashboardButton);
 
         DrawRectangleRounded(dashboardButton, 10, int(2), (isMouseOverDashboardButton ? DARKGRAY : LIGHTGRAY));
-        if (isMouseOverDashboardButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+        if (isMouseOverDashboardButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+        {
             ;
         }
 
         bool isMouseOverBudgetButton = CheckCollisionPointRec(mousePosition, budgetButton);
         DrawRectangleRounded(budgetButton, 10, int(2), (isMouseOverBudgetButton ? DARKGRAY : LIGHTGRAY));
-        if (isMouseOverBudgetButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+        if (isMouseOverBudgetButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) 
+        {
             budget();
         }
 
         bool isMouseOverStatisticsButton = CheckCollisionPointRec(mousePosition, statisticsButton);
         DrawRectangleRounded(statisticsButton, 10, int(2), (isMouseOverStatisticsButton ? DARKGRAY : LIGHTGRAY));
-        if (isMouseOverStatisticsButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+        if (isMouseOverStatisticsButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) 
+        {
             statistics();
         }
 
-
         EndDrawing();
     }
+
+    UnloadTexture(manBigSize);
+    UnloadTexture(womanBigSize);
+    UnloadTexture(man);
+    UnloadTexture(woman);
 }

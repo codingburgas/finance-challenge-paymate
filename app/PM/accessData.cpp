@@ -2,7 +2,8 @@
 
 char currentUser[25] = "";
 
-void DataAccess::addAccount(const string& username, const string& password, const string& gender)const {
+void DataAccess::addAccount(const string& username, const string& password, const string& gender)const 
+{
     // Open accounts.csv file
     ofstream file("../data/accounts.csv", ios_base::app);
     // Write username and password
@@ -11,7 +12,8 @@ void DataAccess::addAccount(const string& username, const string& password, cons
     file.close();
 }
 
-void DataAccess::addAccountInfo(const string& monhtlyIncome, const string& savings, const string& balance)const {
+void DataAccess::addAccountInfo(const string& monhtlyIncome, const string& savings, const string& balance)const 
+{
     // Open accounts.csv file
     ofstream file("../data/accountData.csv", ios_base::app);
     // Write username and password
