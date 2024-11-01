@@ -69,6 +69,9 @@ extern USER_DATA loadUserData();
 
 void statistics()
 {
+    float maxValue = -9999.99;
+    int maxIndex = -1;
+
     const int screenWidth = 900;
     const int screenHeight = 1080;
 
@@ -144,7 +147,7 @@ void statistics()
         else
         {
             // Draw the bar chart with expenses
-            for (size_t i = 0; i < userData.expenses.size(); i++) 
+            for (size_t i = 0; i < userData.expenses.size(); i++)
             {
                 int barHeight = static_cast<int>((userData.expenses[i] * maxBarHeight) / 100);  // Scale to fit
                 DrawRectangle(xOffset + i * (barWidth + 10), yOffset - barHeight, barWidth, barHeight, BLUE);
@@ -154,6 +157,40 @@ void statistics()
             DrawText("Food", (xOffset * 2) + 30, yOffset + 10, 20, DARKGRAY);
             DrawText("Health", (xOffset * 3) + 17, yOffset + 10, 20, DARKGRAY);
             DrawText("Gifts", (xOffset * 4) + 10, yOffset + 10, 20, DARKGRAY);
+        }
+
+        // Find the max value and its index in userData.expenses
+        for (size_t i = 0; i < userData.expenses.size(); i++) 
+        {
+            if (userData.expenses[i] > maxValue) 
+            {
+                maxValue = userData.expenses[i];
+                maxIndex = static_cast<int>(i);
+            }
+        }
+
+        // Display a specific message based on which expense is the highest
+        switch (maxIndex) 
+        {
+        case 0:
+            DrawText("Highest expense: Housing", xOffset - 70, yOffset + 100, 20, RED);
+            break;
+
+        case 1:
+            DrawText("Highest expense: Food", xOffset, yOffset + 100, 20, RED);
+            break;
+
+        case 2:
+            DrawText("Highest expense: Health", xOffset, yOffset + 100, 20, RED);
+            break;
+
+        case 3:
+            DrawText("Highest expense: Gifts", xOffset, yOffset + 100, 20, RED);
+            break;
+
+        default:
+            DrawText("Error: Unable to determine highest expense", xOffset, yOffset + 100, 20, RED);
+            break;
         }
 
         bool isMouseOverDashboardButton = CheckCollisionPointRec(mousePosition, dashboardButton);
