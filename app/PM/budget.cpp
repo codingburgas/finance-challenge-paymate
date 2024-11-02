@@ -110,9 +110,11 @@ void updateDiagram(float newDiagram)
 }
 
 void budget() {
+    
+
     const int screenWidth = 900;
     const int screenHeight = 1080;
-
+    Texture2D background = LoadTexture("../images/budgetpage.png");
 
     const Rectangle dashboardButton = { 150, 970, 140, 75 };
     const Rectangle budgetButton = { 380, 970, 140, 75 };
@@ -134,16 +136,16 @@ void budget() {
     bool mouseOnInputBox3 = false;
     bool mouseOnInputBox4 = false;
 
-    Rectangle inputBox1 = { 200, 300, 550, 65 };
-    Rectangle inputBox2 = { 200, 400, 550, 65 };
-    Rectangle inputBox3 = { 200, 500, 550, 65 };
-    Rectangle inputBox4 = { 200, 600, 550, 65 };
-    Rectangle submitDataButton = { 500, 700, 140, 75 };
+    Rectangle inputBox1 = { 100, 400, 180, 45 };
+    Rectangle inputBox2 = { 560, 400, 180, 45 };
+    Rectangle inputBox3 = { 100, 780, 180, 45 };
+    Rectangle inputBox4 = { 560, 780, 180, 45 };
+    Rectangle submitDataButton = { 345, 840, 140, 75 };
 
     USER_DATA userData = loadUserData();  // Load the user's data
 
     DataAccess dataAccess;
-
+    
     Texture2D manBigSize = LoadTexture("../images/m.png");
     Texture2D womanBigSize = LoadTexture("../images/w.png");
 
@@ -170,7 +172,10 @@ void budget() {
         Vector2 mousePosition = GetMousePosition();
 
         BeginDrawing();
+         ClearBackground(RAYWHITE);  // Clear the screen to a base color
 
+        // Draw the background texture first so that other elements appear on top
+        DrawTexture(background, 0, 0, WHITE);
         // Check mouse position over input boxes
         mouseOnInputBox1 = CheckCollisionPointRec(mousePosition, inputBox1);
         mouseOnInputBox2 = CheckCollisionPointRec(mousePosition, inputBox2);
@@ -301,8 +306,8 @@ void budget() {
         DrawText(input4, inputBox4.x + 5, inputBox4.y + 8, 40, BLACK);
 
         // Handle submit button click
-        DrawRectangleRounded(submitDataButton, 0.2, 10, DARKBLUE);
-        DrawText("Submit", submitDataButton.x + 15, submitDataButton.y + 20, 25, RAYWHITE);
+        DrawRectangleRounded(submitDataButton, 0.2, 10, BLACK);
+        DrawText("  Submit", submitDataButton.x + 15, submitDataButton.y + 20, 25, RAYWHITE);
 
         if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && CheckCollisionPointRec(mousePosition, submitDataButton))
         {
@@ -352,4 +357,5 @@ void budget() {
     UnloadTexture(womanBigSize);
     UnloadTexture(man);
     UnloadTexture(woman);
+    UnloadTexture(background);
 }
