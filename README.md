@@ -1,8 +1,9 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/u5k3noT3)
 <br>
 <br>
-<img align="right" src="./assets/logo/logoTransparent.png">
 <h1 align="center">🤑 PayMate 🤑</h1>
+<img align="right" src="./app/images/logo.png">
+
  
 <p align = "center">
 <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/codingburgas/finance-challenge-paymate?style=for-the-badge">
@@ -16,7 +17,7 @@
 <p>At PayMate, our purpose is to empower individuals to take control of their finances with ease and confidence. We are dedicated to creating an intuitive personal finance management app that enables users to track income and expenses, manage budgets, and generate insightful financial reports. By providing powerful analysis tools, visualizations, and statistics, we help our users make informed financial decisions, guiding them towards a more secure and well-managed financial future.</p>
 <br>
 
-<h2 align="left">🚀 Languages and Libraries </h2>
+<h2 align="left">🚀🗂 Languages and Libraries </h2>
 <p align="left">
 <a href="https://www.cplusplus.com/"><img src="https://img.icons8.com/color/48/000000/c-plus-plus-logo.png" alt="C++"></a>
 <a href="https://www.raylib.com/"><img src ="https://upload.wikimedia.org/wikipedia/commons/f/f4/Raylib_logo.png" alt="Raylib" heigh=48px width=48px></a>
@@ -32,10 +33,10 @@
    <a href="https://freelogopng.com/image/607"><img src="https://freelogopng.com/images/all_img/1656733637logo-canva-png.png" alt="Canva logo"  width=44px></a>
  <br>
 
-<h2 align="left">📄 Documents</h2><br>
+<h2 align="left">📄📎 Documents</h2><br>
   <ul>
-    <li><a href="https://codingburgas-my.sharepoint.com/:w:/g/personal/zvyankova22_codingburgas_bg/Efguey7Npd1JtyzzqVVvLT4BrcXyGZ-pBnoel-DFtmSApw?e=HDDaQZ">Documentation</a></li>
-    <li><a href="https://codingburgas-my.sharepoint.com/:p:/g/personal/zvyankova22_codingburgas_bg/EeGbc7avLK1OhFY26Nex_WsB4-1PUYB5qqQYZLCzXcMwlg?e=duptgx">Presentation</a></li>
+    <li><a href="https://codingburgas-my.sharepoint.com/:w:/g/personal/zvyankova22_codingburgas_bg/ESp9ud0WEEBBqB-2fQbLnA8BRI-jU82Xe0Z7zr6s1aBIgA?e=jwbu2L">Documentation</a></li>
+    <li><a href="https://codingburgas-my.sharepoint.com/:p:/g/personal/zvyankova22_codingburgas_bg/EZqYdkRO07NFjPvcuTjo1I4B92fdZ2lkoUvLkiV39Iv__Q?e=hyJf0d">Presentation</a></li>
   </ul>  
 
 <h2 align="left">👨🏻‍💻 Team Members </h2>
@@ -73,7 +74,7 @@
 </table>
 <br>
 
- <h2 align="left">🔑 Access</h2>
+ <h2 align="left">🔒🔑 Access</h2>
 
  <p> Open cmd and clone our repo by typing</p>
 
