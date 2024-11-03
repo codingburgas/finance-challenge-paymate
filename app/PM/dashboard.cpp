@@ -104,54 +104,76 @@ void updateBalance(float newBalance)
     }
 }
 
-// Structure to hold expense data.
-struct Expense 
-{
-    float amount;
-};
 
 // Function to load the last spendings from a CSV file. 
-vector<Expense> loadLastSpendings() 
+vector<float> loadLastSpendings()
 {
-    vector<Expense> spendings;
-    ifstream file("../data/lastSpendings.csv");
-    if (file.is_open()) 
+    ifstream file("../data/diagramData.csv");
+
+    // Vector to hold expense data.
+    vector<float> expenses;
+
+    // Check if file opened successfully
+    if (!file.is_open())
     {
-        string line;
-        while (getline(file, line)) 
+        return {};  // Return empty data if file can't be opened
+    }
+    string line;
+
+    while (getline(file, line)) // Loop to read all lines in the file
+    {
+        istringstream ss(line);
+        string value;
+
+        if (line.substr(0, line.find(',')) != currentUser)
         {
-            stringstream ss(line);
-            string amountStr, percentageStr;
-            if (getline(ss, amountStr, ','))
+            cout << line << endl;
+            continue;
+        }
+
+        while (getline(ss, value, ',')) // Loop to read each comma-separated value
+        {
+            try
             {
-                Expense expense;
-                expense.amount = stof(amountStr);
-                spendings.push_back(expense);
+                float expense = stof(value);
+                expenses.push_back(expense);
+            }
+
+            catch (const invalid_argument&)
+            {
+                expenses.clear();  // Clear data on error and skip this line
+                continue;
             }
         }
-        file.close();
     }
-   
-    return spendings;
+    file.close();
+
+    // Ensure we have exactly 4 expense entries, otherwise log an error
+    if (expenses.size() != 4)
+    {
+        expenses.clear();  // Clear data if size is not as expected
+    }
+
+    return expenses;
 }
 
 // Function to update the savings for the current user in the CSV file.
-void updateSavings(float newSavings) 
+void updateSavings(float newSavings)
 {
     rapidcsv::Document accountData("../data/accountData.csv");
 
     vector<string> usernames = accountData.GetColumn<string>("username");
     int userRow = -1;
-    for (int i = 0; i < usernames.size(); i++) 
+    for (int i = 0; i < usernames.size(); i++)
     {
-        if (usernames[i] == currentUser) 
+        if (usernames[i] == currentUser)
         {
             userRow = i;
             break;
         }
     }
 
-    if (userRow != -1) 
+    if (userRow != -1)
     {
         accountData.SetCell("savings", userRow, to_string(newSavings));
         accountData.Save("../data/accountData.csv");
@@ -222,6 +244,9 @@ void dashboard()
 
     SetTargetFPS(60);
 
+    // Load the last spendings data.
+    vector<float> lastSpendings = loadLastSpendings();
+
     while (!WindowShouldClose())
     {
         Vector2 mousePosition = GetMousePosition();
@@ -231,7 +256,7 @@ void dashboard()
         if (CheckCollisionPointRec(mousePosition, wageInputBox)) mouseOnWageInputBox = true;
         else mouseOnWageInputBox = false;
 
-        if (mouseOnWageInputBox) 
+        if (mouseOnWageInputBox)
         {
             SetMouseCursor(MOUSE_CURSOR_IBEAM);
 
@@ -253,9 +278,6 @@ void dashboard()
                 wageInput[wageInputLetterCount] = '\0';
             }
         }
-
-        // Load the last spendings data.
-        vector<Expense> lastSpendings = loadLastSpendings();
 
         BeginDrawing();
 
@@ -284,12 +306,12 @@ void dashboard()
             profile();
         }
 
-        DrawTextEx(font, "Hello, ", Vector2{(float) 100, (float) 80}, 80, 3, BLACK);
-        DrawTextEx(font, currentUser, Vector2{(float) 300,(float) 80}, 80, 3, BLACK);
+        DrawTextEx(font, "Hello, ", Vector2{ (float)100, (float)80 }, 80, 3, BLACK);
+        DrawTextEx(font, currentUser, Vector2{ (float)300,(float)80 }, 80, 3, BLACK);
 
         // Display balance
         DrawRectangleRounded(balanceBox, 0.2f, 10, DARKBLUE);
-        DrawTextEx(font, "Balance", Vector2{(float)balanceBox.x + 57, (float)balanceBox.y + 50 }, 60, 2, RAYWHITE);
+        DrawTextEx(font, "Balance", Vector2{ (float)balanceBox.x + 57, (float)balanceBox.y + 50 }, 60, 2, RAYWHITE);
         DrawText(TextFormat("$%.2f", userData.balance), balanceBox.x + 35, balanceBox.y + 130, 50, RAYWHITE);
 
         // Display savings.
@@ -299,34 +321,34 @@ void dashboard()
 
         // Wage input box
         DrawRectangleRec(wageInputBox, LIGHTGRAY);
-        DrawTextEx(font,"Enter Wage:", Vector2{ (float)wageInputBox.x,  (float)wageInputBox.y - 50}, 30, 2, DARKGRAY);
-        DrawTextEx(font,wageInput, Vector2{ (float)wageInputBox.x + 5, (float)wageInputBox.y + 15 }, 50, 2, BLACK);
+        DrawTextEx(font, "Enter Wage:", Vector2{ (float)wageInputBox.x,  (float)wageInputBox.y - 50 }, 30, 2, DARKGRAY);
+        DrawTextEx(font, wageInput, Vector2{ (float)wageInputBox.x + 5, (float)wageInputBox.y + 15 }, 50, 2, BLACK);
 
         // Update balance with wage input if the input box is clicked.
         if (mouseOnWageInputBox && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
         {
-                userData.balance += stof(wageInput);  // Update balance with wage input
-                updateBalance(userData.balance);  // Save new balance to CSV
+            userData.balance += stof(wageInput);  // Update balance with wage input
+            updateBalance(userData.balance);  // Save new balance to CSV
         }
 
         // Savings input box.
         DrawRectangleRec(savingsInputBox, LIGHTGRAY);
-        DrawTextEx(font,"Enter Savings:", Vector2{ (float)savingsInputBox.x, (float)savingsInputBox.y - 50 }, 30, 2, DARKGRAY);
-        DrawTextEx(font,savingsInput, Vector2{ (float)savingsInputBox.x + 5, (float)savingsInputBox.y + 15 }, 50, 2, BLACK);
+        DrawTextEx(font, "Enter Savings:", Vector2{ (float)savingsInputBox.x, (float)savingsInputBox.y - 50 }, 30, 2, DARKGRAY);
+        DrawTextEx(font, savingsInput, Vector2{ (float)savingsInputBox.x + 5, (float)savingsInputBox.y + 15 }, 50, 2, BLACK);
 
         // Check if the mouse is over the savings input box.
         if (CheckCollisionPointRec(mousePosition, savingsInputBox)) mouseOnSavingsInputBox = true;
         else mouseOnSavingsInputBox = false;
 
         // Handle savings input.
-        if (mouseOnSavingsInputBox) 
+        if (mouseOnSavingsInputBox)
         {
             SetMouseCursor(MOUSE_CURSOR_IBEAM);
 
             int key = GetCharPressed();
-            while (key > 0) 
+            while (key > 0)
             {
-                if ((key >= 32) && (key <= 125) && (savingsInputLetterCount < 25)) 
+                if ((key >= 32) && (key <= 125) && (savingsInputLetterCount < 25))
                 {
                     savingsInput[savingsInputLetterCount] = (char)key;
                     savingsInput[savingsInputLetterCount + 1] = '\0';
@@ -335,7 +357,7 @@ void dashboard()
                 key = GetCharPressed();
             }
 
-            if (IsKeyPressed(KEY_BACKSPACE)) 
+            if (IsKeyPressed(KEY_BACKSPACE))
             {
                 savingsInputLetterCount--;
                 if (savingsInputLetterCount < 0) savingsInputLetterCount = 0;
@@ -344,28 +366,28 @@ void dashboard()
         }
 
         // Update savings and balance if the savings input box is clicked.
-        if (mouseOnSavingsInputBox && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) 
+        if (mouseOnSavingsInputBox && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
         {
-                float savingsAmount = stof(savingsInput);
-                userData.balance -= savingsAmount;
-                updateBalance(userData.balance);
-                userData.savings += stof(savingsInput);
-                updateSavings(userData.savings);
+            float savingsAmount = stof(savingsInput);
+            userData.balance -= savingsAmount;
+            updateBalance(userData.balance);
+            userData.savings += stof(savingsInput);
+            updateSavings(userData.savings);
 
         }
 
         int yPosition = 650;
 
         // Display last spendings.
-        DrawTextEx(font,"Last spendings", Vector2{ (float)500,  (float)550 }, 50, 2, BLUE);
-        DrawTextEx(font,"Housing", Vector2{ (float)500,  (float)650 }, 40, 2, BLACK);
-        DrawTextEx(font,"Food", Vector2{ (float)500,  (float)700 }, 40, 2, BLACK);
-        DrawTextEx(font,"Health", Vector2{ (float)500,  (float)750 }, 40, 2, BLACK);
-        DrawTextEx(font,"Gifts", Vector2{ (float)500,  (float)800 }, 40, 2, BLACK);
+        DrawTextEx(font, "Last spendings", Vector2{ (float)500,  (float)550 }, 50, 2, BLUE);
+        DrawTextEx(font, "Housing", Vector2{ (float)500,  (float)650 }, 40, 2, BLACK);
+        DrawTextEx(font, "Food", Vector2{ (float)500,  (float)700 }, 40, 2, BLACK);
+        DrawTextEx(font, "Health", Vector2{ (float)500,  (float)750 }, 40, 2, BLACK);
+        DrawTextEx(font, "Gifts", Vector2{ (float)500,  (float)800 }, 40, 2, BLACK);
 
-        for (const Expense& expense : lastSpendings)
+        for (float expense : lastSpendings)
         {
-            DrawTextEx(font,TextFormat("- $% .2f", expense.amount), Vector2{ (float)650, (float)yPosition + 10 }, 35, 2, RED);
+            DrawTextEx(font, TextFormat("- $% .2f", expense), Vector2{ (float)650, (float)yPosition}, 35, 2, RED);
             yPosition += 50;
         }
 
@@ -374,7 +396,7 @@ void dashboard()
         bool isMouseOverDashboardButton = CheckCollisionPointRec(mousePosition, dashboardButton);
         DrawRectangleRounded(dashboardButton, 10, int(2), (isMouseOverDashboardButton ? DARKGRAY : LIGHTGRAY));
         DrawTexture(dashboardIcon, dashboardButton.x + 17, dashboardButton.y - 5, RAYWHITE);
-        if (isMouseOverDashboardButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) 
+        if (isMouseOverDashboardButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
         {
             ;
         }
@@ -382,7 +404,7 @@ void dashboard()
         bool isMouseOverBudgetButton = CheckCollisionPointRec(mousePosition, budgetButton);
         DrawRectangleRounded(budgetButton, 10, int(2), (isMouseOverBudgetButton ? DARKGRAY : LIGHTGRAY));
         DrawTexture(budgetIcon, budgetButton.x + 17, budgetButton.y + 10, RAYWHITE);
-        if (isMouseOverBudgetButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) 
+        if (isMouseOverBudgetButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
         {
             budget();
         }
@@ -390,15 +412,15 @@ void dashboard()
         bool isMouseOverStatisticsButton = CheckCollisionPointRec(mousePosition, statisticsButton);
         DrawRectangleRounded(statisticsButton, 10, int(2), (isMouseOverStatisticsButton ? DARKGRAY : LIGHTGRAY));
         DrawTexture(statisticsIcon, statisticsButton.x + 30, statisticsButton.y + 15, RAYWHITE);
-        if (isMouseOverStatisticsButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) 
+        if (isMouseOverStatisticsButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
         {
             statistics();
         }
 
         bool isMouseOverExitButton = CheckCollisionPointRec(mousePosition, exitButton);
         DrawRectangleRounded(exitButton, 10, int(2), (isMouseOverExitButton ? RED : DARKGRAY));
-        DrawTextEx(font,"X",Vector2{(float) exitButton.x + 18,  (float)exitButton.y + 15 }, 25, 10, BLACK);
-        if (isMouseOverExitButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) 
+        DrawTextEx(font, "X", Vector2{ (float)exitButton.x + 18,  (float)exitButton.y + 15 }, 25, 10, BLACK);
+        if (isMouseOverExitButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
         {
             CloseWindow();
         }
@@ -415,7 +437,7 @@ void dashboard()
     UnloadTexture(background);
     UnloadTexture(dashboardPhoto);
     UnloadTexture(statisticsPhoto);
-    UnloadTexture(budgetPhoto); 
+    UnloadTexture(budgetPhoto);
     UnloadTexture(dashboardIcon);
     UnloadTexture(statisticsIcon);
     UnloadTexture(budgetIcon);
