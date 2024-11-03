@@ -148,23 +148,35 @@ void budget() {
     
     Texture2D manBigSize = LoadTexture("../images/m.png");
     Texture2D womanBigSize = LoadTexture("../images/w.png");
+    Texture2D dashboardPhoto = LoadTexture("../images/dashboardImg.png");
+    Texture2D statisticsPhoto = LoadTexture("../images/statistics.png");
+    Texture2D budgetPhoto = LoadTexture("../images/budget.png");
 
     int newWidth = manBigSize.width / 2 + 30;
     int newHeight = manBigSize.height / 2;
 
     Image manImage = LoadImage("../images/m.png");
     Image womanImage = LoadImage("../images/w.png");
+    Image dashboardImage = LoadImage("../images/dashboardImg.png");
+    Image statisticsImage = LoadImage("../images/statistics.png");
+    Image budgetImage = LoadImage("../images/budget.png");
 
     ImageResize(&manImage, newWidth - 15, newHeight);
     ImageResize(&womanImage, newWidth, newHeight);
+    ImageResize(&dashboardImage, newWidth- 30, newHeight-37);
+    ImageResize(&statisticsImage, newWidth - 50, newHeight -85);
+    ImageResize(&budgetImage, newWidth- 30, newHeight - 70);
 
     Texture2D man = LoadTextureFromImage(manImage);
     Texture2D woman = LoadTextureFromImage(womanImage);
+    Texture2D dashboardIcon = LoadTextureFromImage(dashboardImage);
+    Texture2D statisticsIcon = LoadTextureFromImage(statisticsImage);
+    Texture2D budgetIcon = LoadTextureFromImage(budgetImage);
 
     Validate validator;
 
     const Rectangle picToProfile = { GetScreenWidth() / 2 + 250, GetScreenHeight() / 2 - 500, man.width, man.height };
-
+    const Rectangle exitButton = { GetScreenWidth() / 2 + 380, GetScreenHeight() / 2 - 520,50,50 };
     SetTargetFPS(60);
 
     while (!WindowShouldClose())
@@ -172,10 +184,10 @@ void budget() {
         Vector2 mousePosition = GetMousePosition();
 
         BeginDrawing();
-         ClearBackground(RAYWHITE);  // Clear the screen to a base color
 
         // Draw the background texture first so that other elements appear on top
         DrawTexture(background, 0, 0, WHITE);
+
         // Check mouse position over input boxes
         mouseOnInputBox1 = CheckCollisionPointRec(mousePosition, inputBox1);
         mouseOnInputBox2 = CheckCollisionPointRec(mousePosition, inputBox2);
@@ -268,7 +280,6 @@ void budget() {
             }
         }
 
-        ClearBackground(RAYWHITE);
 
         DrawRectangle(0, 930, 900, 200, BLACK);
 
@@ -330,24 +341,30 @@ void budget() {
         // Draw navigation buttons
         bool isMouseOverDashboardButton = CheckCollisionPointRec(mousePosition, dashboardButton);
         DrawRectangleRounded(dashboardButton, 10, int(2), (isMouseOverDashboardButton ? DARKGRAY : LIGHTGRAY));
-
-        if (isMouseOverDashboardButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-        {
+        DrawTexture(dashboardIcon, dashboardButton.x + 17, dashboardButton.y - 5, RAYWHITE);
+        if (isMouseOverDashboardButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
             dashboard();
-        }
-
-        bool isMouseOverStatisticsButton = CheckCollisionPointRec(mousePosition, statisticsButton);
-        DrawRectangleRounded(statisticsButton, 10, int(2), (isMouseOverStatisticsButton ? DARKGRAY : LIGHTGRAY));
-        if (isMouseOverStatisticsButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-        {
-            statistics();
         }
 
         bool isMouseOverBudgetButton = CheckCollisionPointRec(mousePosition, budgetButton);
         DrawRectangleRounded(budgetButton, 10, int(2), (isMouseOverBudgetButton ? DARKGRAY : LIGHTGRAY));
-        if (isMouseOverBudgetButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-        {
+        DrawTexture(budgetIcon, budgetButton.x + 17, budgetButton.y + 10, RAYWHITE);
+        if (isMouseOverBudgetButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
             ;
+        }
+
+        bool isMouseOverStatisticsButton = CheckCollisionPointRec(mousePosition, statisticsButton);
+        DrawRectangleRounded(statisticsButton, 10, int(2), (isMouseOverStatisticsButton ? DARKGRAY : LIGHTGRAY));
+        DrawTexture(statisticsIcon, statisticsButton.x + 30, statisticsButton.y + 15, RAYWHITE);
+        if (isMouseOverStatisticsButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            statistics();
+        }
+
+        bool isMouseOverExitButton = CheckCollisionPointRec(mousePosition, exitButton);
+        DrawRectangleRounded(exitButton, 10, int(2), (isMouseOverExitButton ? RED : DARKGRAY));
+        DrawText("X", exitButton.x + 18, exitButton.y + 15, 25, BLACK);
+        if (isMouseOverExitButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            CloseWindow();
         }
 
         EndDrawing();
@@ -358,4 +375,7 @@ void budget() {
     UnloadTexture(man);
     UnloadTexture(woman);
     UnloadTexture(background);
+    UnloadTexture(dashboardPhoto);
+    UnloadTexture(statisticsPhoto);
+    UnloadTexture(budgetPhoto);
 }

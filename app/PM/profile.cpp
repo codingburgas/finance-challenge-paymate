@@ -87,8 +87,29 @@ void profile()
    
     Texture2D profileTemplateMan = LoadTexture("../images/mprofile.png");
     Texture2D profileTemplateWoman = LoadTexture("../images/wprofile.png");
+
+    int newWidth = profileTemplateMan.width / 8;
+    int newHeight = profileTemplateMan.height / 8;
+
+    Texture2D dashboardPhoto = LoadTexture("../images/dashboardImg.png");
+    Texture2D statisticsPhoto = LoadTexture("../images/statistics.png");
+    Texture2D budgetPhoto = LoadTexture("../images/budget.png");
    
+    Image dashboardImage = LoadImage("../images/dashboardImg.png");
+    Image statisticsImage = LoadImage("../images/statistics.png");
+    Image budgetImage = LoadImage("../images/budget.png");
+
+    ImageResize(&dashboardImage, newWidth - 5, newHeight - 55);
+    ImageResize(&budgetImage, newWidth - 5, newHeight - 75);
+    ImageResize(&statisticsImage, newWidth - 25, newHeight - 95);
+
+    Texture2D dashboardIcon = LoadTextureFromImage(dashboardImage);
+    Texture2D statisticsIcon = LoadTextureFromImage(statisticsImage);
+    Texture2D budgetIcon = LoadTextureFromImage(budgetImage);
+
     Validate validator;
+
+    const Rectangle exitButton = { GetScreenWidth() / 2 + 380, GetScreenHeight() / 2 - 520,50,50 };
 
     char oldPass[25] = "\0";
     char newPass[25] = "\0";
@@ -177,36 +198,41 @@ void profile()
         else
         {
             DrawTexture(profileTemplateWoman, 0, 0, RAYWHITE);
-
         }
+
 
         DrawText(currentUser, GetScreenWidth() / 2 - 100, GetScreenHeight() / 2 - 20, 40, BLACK);
         DrawText(oldPass, oldPassBox.x + 5, oldPassBox.y + 8, 40, BLACK);
         DrawText(TextFormat("%.*s", newPassLetterCount, "**************************"), newPassBox.x + 5, newPassBox.y + 8, 40, BLACK);
         
-        bool isMouseOverButtonLogin = CheckCollisionPointRec(mousePosition, editButton);
-        DrawText("Save", GetScreenWidth() / 2 + 260, GetScreenHeight() / 2 + 300, 30, isMouseOverButtonLogin ? BLACK : WHITE);
         DrawRectangle(0, 930, 900, 200, BLACK);
 
         bool isMouseOverDashboardButton = CheckCollisionPointRec(mousePosition, dashboardButton);
         DrawRectangleRounded(dashboardButton, 10, int(2), (isMouseOverDashboardButton ? DARKGRAY : LIGHTGRAY));
-        if (CheckCollisionPointRec(mousePosition, dashboardButton) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) 
-        {
+        DrawTexture(dashboardIcon, dashboardButton.x + 15, dashboardButton.y , RAYWHITE);
+        if (isMouseOverDashboardButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
             dashboard();
         }
 
         bool isMouseOverBudgetButton = CheckCollisionPointRec(mousePosition, budgetButton);
         DrawRectangleRounded(budgetButton, 10, int(2), (isMouseOverBudgetButton ? DARKGRAY : LIGHTGRAY));
-        if (CheckCollisionPointRec(mousePosition, budgetButton) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) 
-        {
+        DrawTexture(budgetIcon, budgetButton.x + 17, budgetButton.y + 10, RAYWHITE);
+        if (isMouseOverBudgetButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
             budget();
         }
 
         bool isMouseOverStatisticsButton = CheckCollisionPointRec(mousePosition, statisticsButton);
         DrawRectangleRounded(statisticsButton, 10, int(2), (isMouseOverStatisticsButton ? DARKGRAY : LIGHTGRAY));
-        if (CheckCollisionPointRec(mousePosition, statisticsButton) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) 
-        {
+        DrawTexture(statisticsIcon, statisticsButton.x + 30, statisticsButton.y + 17, RAYWHITE);
+        if (isMouseOverStatisticsButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
             statistics();
+        }
+
+        bool isMouseOverExitButton = CheckCollisionPointRec(mousePosition, exitButton);
+        DrawRectangleRounded(exitButton, 10, int(2), (isMouseOverExitButton ? RED : DARKGRAY));
+        DrawText("X", exitButton.x + 18, exitButton.y + 17, 25, BLACK);
+        if (isMouseOverExitButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            CloseWindow();
         }
 
         bool isEditButtonPressed = CheckCollisionPointRec(mousePosition, editButton) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT);

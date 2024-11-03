@@ -78,26 +78,37 @@ void statistics()
     const Rectangle dashboardButton = { 150, 970, 140, 75 };
     const Rectangle budgetButton = { 380, 970, 140, 75 };
     const Rectangle statisticsButton = { 610, 970, 140, 75 };
-
     Texture2D manBigSize = LoadTexture("../images/m.png");
     Texture2D womanBigSize = LoadTexture("../images/w.png");
-
+    Texture2D dashboardPhoto = LoadTexture("../images/dashboardImg.png");
+    Texture2D background = LoadTexture("../images/greybackground.png");
+    Texture2D statisticsPhoto = LoadTexture("../images/statistics.png");
+    Texture2D budgetPhoto = LoadTexture("../images/budget.png");
     int newWidth = manBigSize.width / 2 + 30;
     int newHeight = manBigSize.height / 2;
 
     Image manImage = LoadImage("../images/m.png");
     Image womanImage = LoadImage("../images/w.png");
+    Image dashboardImage = LoadImage("../images/dashboardImg.png");
+    Image statisticsImage = LoadImage("../images/statistics.png");
+    Image budgetImage = LoadImage("../images/budget.png");
 
     ImageResize(&manImage, newWidth - 15, newHeight);
     ImageResize(&womanImage, newWidth, newHeight);
+    ImageResize(&dashboardImage, newWidth - 30, newHeight - 37);
+    ImageResize(&statisticsImage, newWidth - 50, newHeight - 85);
+    ImageResize(&budgetImage, newWidth - 30, newHeight - 70);
 
     Texture2D man = LoadTextureFromImage(manImage);
     Texture2D woman = LoadTextureFromImage(womanImage);
+    Texture2D dashboardIcon = LoadTextureFromImage(dashboardImage);
+    Texture2D statisticsIcon = LoadTextureFromImage(statisticsImage);
+    Texture2D budgetIcon = LoadTextureFromImage(budgetImage);
 
     Validate validator;
    
     const Rectangle picToProfile = { GetScreenWidth() / 2 + 250, GetScreenHeight() / 2 - 500, man.width, man.height };
-
+    const Rectangle exitButton = { GetScreenWidth() / 2 + 380, GetScreenHeight() / 2 - 520,50,50 };
     SetTargetFPS(60);
 
     const int barWidth = 130;
@@ -113,10 +124,8 @@ void statistics()
 
         BeginDrawing();
 
-        BeginDrawing();
-
         ClearBackground(RAYWHITE);
-
+        DrawTexture(background, 0, 0, RAYWHITE);
         DrawRectangle(0, 930, 900, 200, BLACK);
 
         if (validator.maleOrFemale(currentUser))
@@ -150,7 +159,7 @@ void statistics()
             for (size_t i = 0; i < userData.expenses.size(); i++)
             {
                 int barHeight = static_cast<int>((userData.expenses[i] * maxBarHeight) / 100);  // Scale to fit
-                DrawRectangle(xOffset + i * (barWidth + 10), yOffset - barHeight, barWidth, barHeight, BLUE);
+                DrawRectangle(xOffset + i * (barWidth + 10), yOffset - barHeight, barWidth, barHeight, RED);
             }
 
             DrawText("Housing", xOffset + 27, yOffset + 10, 20, DARKGRAY);
@@ -173,7 +182,7 @@ void statistics()
         switch (maxIndex) 
         {
         case 0: //Highest expense in housing
-            DrawText("Highest expense: Housing", xOffset - 70, yOffset + 80, 20, RED);
+            DrawText("Highest expense: Housing", xOffset - 70, yOffset + 80, 20, BLUE);
 
             //First tip
             DrawText("1. Evaluate Subscription Plans and Utility Usage: Review your internet,", xOffset - 50, yOffset + 130, 20, DARKGRAY);
@@ -190,7 +199,7 @@ void statistics()
             break;
 
         case 1: //Highest expense in ood
-            DrawText("Highest expense: Food", xOffset - 70, yOffset + 80, 20, RED);
+            DrawText("Highest expense: Food", xOffset - 70, yOffset + 80, 20, BLUE);
 
             //First tip
             DrawText("1. Plan and Track Purchases: Set a weekly or monthly budget for", xOffset - 50, yOffset + 130, 20, DARKGRAY);
@@ -206,7 +215,7 @@ void statistics()
             break;
 
         case 2: //Highest expense in health
-            DrawText("Highest expense: Health", xOffset - 70, yOffset + 80, 20, RED);
+            DrawText("Highest expense: Health", xOffset - 70, yOffset + 80, 20, BLUE);
 
             //First tip
             DrawText("1. Create a Budget and Track Spending: Establish a budget specifically", xOffset - 50, yOffset + 130, 20, DARKGRAY);
@@ -224,7 +233,7 @@ void statistics()
             break;
 
         case 3: //Highest expense in gifts
-            DrawText("Highest expense: Gifts", xOffset - 70, yOffset + 80, 20, RED);
+            DrawText("Highest expense: Gifts", xOffset - 70, yOffset + 80, 20, BLUE);
 
             //First tip
             DrawText("1. Set a Budget: Determine a clear budget for gifts, donations, ", xOffset - 50, yOffset + 130, 20, DARKGRAY);
@@ -241,28 +250,36 @@ void statistics()
 
         default:
             DrawText("Error: Unable to determine highest expense", xOffset - 70, yOffset + 120, 20, RED);
+
             break;
         }
 
         bool isMouseOverDashboardButton = CheckCollisionPointRec(mousePosition, dashboardButton);
         DrawRectangleRounded(dashboardButton, 10, int(2), (isMouseOverDashboardButton ? DARKGRAY : LIGHTGRAY));
-        if (CheckCollisionPointRec(mousePosition, dashboardButton) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-        {
-            dashboard();
+        DrawTexture(dashboardIcon, dashboardButton.x + 17, dashboardButton.y - 5, RAYWHITE);
+        if (isMouseOverDashboardButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            dashboard;
         }
 
         bool isMouseOverBudgetButton = CheckCollisionPointRec(mousePosition, budgetButton);
         DrawRectangleRounded(budgetButton, 10, int(2), (isMouseOverBudgetButton ? DARKGRAY : LIGHTGRAY));
-        if (CheckCollisionPointRec(mousePosition, budgetButton) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-        {
+        DrawTexture(budgetIcon, budgetButton.x + 17, budgetButton.y + 10, RAYWHITE);
+        if (isMouseOverBudgetButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
             budget();
         }
 
-        bool isMouseOverStatistricsButton = CheckCollisionPointRec(mousePosition, statisticsButton);
-        DrawRectangleRounded(statisticsButton, 10, int(2), (isMouseOverStatistricsButton ? DARKGRAY : LIGHTGRAY));
-        if (CheckCollisionPointRec(mousePosition, statisticsButton) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-        {
+        bool isMouseOverStatisticsButton = CheckCollisionPointRec(mousePosition, statisticsButton);
+        DrawRectangleRounded(statisticsButton, 10, int(2), (isMouseOverStatisticsButton ? DARKGRAY : LIGHTGRAY));
+        DrawTexture(statisticsIcon, statisticsButton.x + 30, statisticsButton.y + 15, RAYWHITE);
+        if (isMouseOverStatisticsButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
             ;
+        }
+
+        bool isMouseOverExitButton = CheckCollisionPointRec(mousePosition, exitButton);
+        DrawRectangleRounded(exitButton, 10, int(2), (isMouseOverExitButton ? RED : DARKGRAY));
+        DrawText("X", exitButton.x + 18, exitButton.y + 15, 25, BLACK);
+        if (isMouseOverExitButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            CloseWindow();
         }
 
         EndDrawing();
@@ -272,4 +289,8 @@ void statistics()
     UnloadTexture(womanBigSize);
     UnloadTexture(man);
     UnloadTexture(woman);
+    UnloadTexture(background);
+    UnloadTexture(dashboardPhoto);
+    UnloadTexture(statisticsPhoto);
+    UnloadTexture(budgetPhoto);
 }
