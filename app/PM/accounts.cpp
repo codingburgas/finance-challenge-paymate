@@ -3,6 +3,7 @@
 #include "accessData.h"
 #include "validation.h"
 #include "dashboard.h"
+
 void signup()
 {
     Texture2D manBigSize = LoadTexture("../images/man.png");

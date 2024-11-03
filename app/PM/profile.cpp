@@ -5,6 +5,7 @@
 #include "validation.h"
 #include "accessData.h"
 
+// Function to edit a user's password
 bool editPassword(const string& username, const string& oldPass, const string& newPass) 
 {
     ifstream file("../data/accounts.csv");
@@ -15,7 +16,6 @@ bool editPassword(const string& username, const string& oldPass, const string& n
 
     if (!file.is_open())
     {
-        cerr << "Error: Could not open accounts file." << endl;
         return false;
     }
    
@@ -40,8 +40,7 @@ bool editPassword(const string& username, const string& oldPass, const string& n
                 }
 
                 else 
-                {
-                    
+                {   
                     file.close();
                     return false;
                 }
@@ -78,6 +77,8 @@ bool editPassword(const string& username, const string& oldPass, const string& n
 
 void profile()
 {
+    Font font = LoadFont("../font/font.ttf");
+
     const int screenWidth = 900;
     const int screenHeight = 1080;
 
@@ -85,6 +86,7 @@ void profile()
     const Rectangle budgetButton = { 380, 970, 140, 75 };
     const Rectangle statisticsButton = { 610, 970, 140, 75 };
    
+    // Load profile templates based on gender
     Texture2D profileTemplateMan = LoadTexture("../images/mprofile.png");
     Texture2D profileTemplateWoman = LoadTexture("../images/wprofile.png");
 
@@ -131,6 +133,7 @@ void profile()
     {
         Vector2 mousePosition = GetMousePosition();
 
+        // Check mouse position for input boxes
         if (CheckCollisionPointRec(mousePosition, oldPassBox)) mouseOnOldPass = true;
         else mouseOnOldPass = false;
 
@@ -140,6 +143,7 @@ void profile()
         if (mouseOnOldPass || mouseOnNewPass) SetMouseCursor(MOUSE_CURSOR_IBEAM);
         else SetMouseCursor(MOUSE_CURSOR_DEFAULT);
 
+        // Handle old password input
         if (mouseOnOldPass) 
         {
             int key = GetCharPressed();
@@ -163,6 +167,7 @@ void profile()
             }
         }
 
+        // Handle new password input
         if (mouseOnNewPass) 
         {
             int key = GetCharPressed();
@@ -190,6 +195,7 @@ void profile()
 
         ClearBackground(RAYWHITE);
 
+        // Display the appropriate profile template
         if (validator.maleOrFemale(currentUser))
         {
             DrawTexture(profileTemplateMan, 0, 0, RAYWHITE);
@@ -200,49 +206,59 @@ void profile()
             DrawTexture(profileTemplateWoman, 0, 0, RAYWHITE);
         }
 
-
-        DrawText(currentUser, GetScreenWidth() / 2 - 100, GetScreenHeight() / 2 - 20, 40, BLACK);
-        DrawText(oldPass, oldPassBox.x + 5, oldPassBox.y + 8, 40, BLACK);
-        DrawText(TextFormat("%.*s", newPassLetterCount, "**************************"), newPassBox.x + 5, newPassBox.y + 8, 40, BLACK);
+        // Display current user name and password inputs
+        DrawTextEx(font, currentUser, Vector2{ (float)GetScreenWidth() / 2 - 90, (float)GetScreenHeight() / 2 - 20 }, 40, 2, BLACK);
+        DrawTextEx(font, oldPass, Vector2{ (float)oldPassBox.x + 5, (float)oldPassBox.y + 8 }, 40, 2, BLACK);
+        DrawTextEx(font, TextFormat("%.*s", newPassLetterCount, "**************************"), Vector2{ (float)newPassBox.x + 5, (float)newPassBox.y + 8 }, 40, 2, BLACK);
+       
+        bool isMouseOverButtonLogin = CheckCollisionPointRec(mousePosition, editButton);
+        DrawTextEx(font, "Save", Vector2{ (float)GetScreenWidth() / 2 + 260, (float)GetScreenHeight() / 2 + 300 }, 30, 2, isMouseOverButtonLogin ? BLACK : WHITE);
         
         DrawRectangle(0, 930, 900, 200, BLACK);
 
+        // Draw navigation buttons
         bool isMouseOverDashboardButton = CheckCollisionPointRec(mousePosition, dashboardButton);
         DrawRectangleRounded(dashboardButton, 10, int(2), (isMouseOverDashboardButton ? DARKGRAY : LIGHTGRAY));
         DrawTexture(dashboardIcon, dashboardButton.x + 15, dashboardButton.y , RAYWHITE);
-        if (isMouseOverDashboardButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+        if (isMouseOverDashboardButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) 
+        {
             dashboard();
         }
 
         bool isMouseOverBudgetButton = CheckCollisionPointRec(mousePosition, budgetButton);
         DrawRectangleRounded(budgetButton, 10, int(2), (isMouseOverBudgetButton ? DARKGRAY : LIGHTGRAY));
         DrawTexture(budgetIcon, budgetButton.x + 17, budgetButton.y + 10, RAYWHITE);
-        if (isMouseOverBudgetButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+        if (isMouseOverBudgetButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) 
+        {
             budget();
         }
 
         bool isMouseOverStatisticsButton = CheckCollisionPointRec(mousePosition, statisticsButton);
         DrawRectangleRounded(statisticsButton, 10, int(2), (isMouseOverStatisticsButton ? DARKGRAY : LIGHTGRAY));
         DrawTexture(statisticsIcon, statisticsButton.x + 30, statisticsButton.y + 17, RAYWHITE);
-        if (isMouseOverStatisticsButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+        if (isMouseOverStatisticsButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) 
+        {
             statistics();
         }
 
         bool isMouseOverExitButton = CheckCollisionPointRec(mousePosition, exitButton);
         DrawRectangleRounded(exitButton, 10, int(2), (isMouseOverExitButton ? RED : DARKGRAY));
-        DrawText("X", exitButton.x + 18, exitButton.y + 17, 25, BLACK);
-        if (isMouseOverExitButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+        DrawTextEx(font, "X", Vector2{ (float)exitButton.x + 18, (float)exitButton.y + 15 }, 25, 2, BLACK);
+        if (isMouseOverExitButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) 
+        {
             CloseWindow();
         }
 
+        // Check if edit button is pressed to update password
         bool isEditButtonPressed = CheckCollisionPointRec(mousePosition, editButton) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT);
 
         if (strlen(oldPass) > 0 && strlen(newPass) > 0 && isEditButtonPressed)
         {
             if (editPassword(currentUser, oldPass, newPass)) 
             {
-                DrawText("Password updated successfully.", GetScreenWidth() / 2 - 100, GetScreenHeight() / 2 + 150, 30, GREEN);
+                DrawTextEx(font, "Password updated successfully.", Vector2{ (float)GetScreenWidth() / 2 - 100, (float)GetScreenHeight() / 2 + 150 }, 30, 2, GREEN);
              
+                // Clear input boxes after successful update
                 oldPass[0] = '\0';
                 newPass[0] = '\0';
                 oldPassLetterCount = 0;
@@ -251,19 +267,27 @@ void profile()
 
             else 
             {
-                DrawText("Incorrect old password or the new one is not meeting the criteria", GetScreenWidth() / 2 - 100, GetScreenHeight() / 2 + 150, 30, RED);
+                DrawTextEx(font, "Incorrect old password or the new one is not meeting the criteria", Vector2{ (float)GetScreenWidth() / 2 - 100, (float)GetScreenHeight() / 2 + 150 }, 30, 2, RED);
                 
+                // Clear input boxes after failed update
                 oldPass[0] = '\0';
                 newPass[0] = '\0';
                 oldPassLetterCount = 0;
                 newPassLetterCount = 0;
             }
         }
-
         EndDrawing();
-
     }
 
+    //Unload all textures
     UnloadTexture(profileTemplateMan);
     UnloadTexture(profileTemplateWoman);
+    UnloadTexture(dashboardPhoto);
+    UnloadTexture(statisticsPhoto);
+    UnloadTexture(budgetPhoto);
+    UnloadTexture(dashboardIcon);
+    UnloadTexture(statisticsIcon);
+    UnloadTexture(budgetIcon);
+    //Unload font
+    UnloadFont(font);
 }

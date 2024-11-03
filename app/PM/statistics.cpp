@@ -5,9 +5,10 @@
 #include "accessData.h"
 #include "validation.h"
 
+// Holds the four expense values
 struct USER_DATA
 {
-    vector<float> expenses;  // Holds the four expense values
+    vector<float> expenses; 
 };
 
 // Load diagram data from CSV
@@ -19,7 +20,6 @@ USER_DATA loadDiagramData()
     // Check if file opened successfully
     if (!file.is_open())
     {
-        cerr << "Error: Could not open diagramData.csv\n";
         return userData;  // Return empty data if file can't be opened
     }
     string line;
@@ -37,17 +37,14 @@ USER_DATA loadDiagramData()
 
         while (getline(ss, value, ',')) // Loop to read each comma-separated value
         {  
-            cout << value << endl;  // Display value (for debugging)
-
             try 
             {
-                float expense = stof(value);  // Convert string to float
+                float expense = stof(value);  
                 userData.expenses.push_back(expense);
             }
 
             catch (const invalid_argument&)
             {
-                cerr << "Error: Invalid data in diagramData.csv\n";
                 userData.expenses.clear();  // Clear data on error and skip this line
                 continue;
             }
@@ -58,7 +55,6 @@ USER_DATA loadDiagramData()
     // Ensure we have exactly 4 expense entries, otherwise log an error
     if (userData.expenses.size() != 4)
     {
-        cerr << "Error: diagramData.csv does not contain 4 expense values.\n";
         userData.expenses.clear();  // Clear data if size is not as expected
     }
 
@@ -69,6 +65,8 @@ extern USER_DATA loadUserData();
 
 void statistics()
 {
+    Font font = LoadFont("../font/font.ttf");
+
     float maxValue = -9999.99;
     int maxIndex = -1;
 
@@ -78,12 +76,14 @@ void statistics()
     const Rectangle dashboardButton = { 150, 970, 140, 75 };
     const Rectangle budgetButton = { 380, 970, 140, 75 };
     const Rectangle statisticsButton = { 610, 970, 140, 75 };
+
     Texture2D manBigSize = LoadTexture("../images/m.png");
     Texture2D womanBigSize = LoadTexture("../images/w.png");
     Texture2D dashboardPhoto = LoadTexture("../images/dashboardImg.png");
     Texture2D background = LoadTexture("../images/greybackground.png");
     Texture2D statisticsPhoto = LoadTexture("../images/statistics.png");
     Texture2D budgetPhoto = LoadTexture("../images/budget.png");
+
     int newWidth = manBigSize.width / 2 + 30;
     int newHeight = manBigSize.height / 2;
 
@@ -93,6 +93,7 @@ void statistics()
     Image statisticsImage = LoadImage("../images/statistics.png");
     Image budgetImage = LoadImage("../images/budget.png");
 
+    // Resize images for the interface
     ImageResize(&manImage, newWidth - 15, newHeight);
     ImageResize(&womanImage, newWidth, newHeight);
     ImageResize(&dashboardImage, newWidth - 30, newHeight - 37);
@@ -109,6 +110,7 @@ void statistics()
    
     const Rectangle picToProfile = { GetScreenWidth() / 2 + 250, GetScreenHeight() / 2 - 500, man.width, man.height };
     const Rectangle exitButton = { GetScreenWidth() / 2 + 380, GetScreenHeight() / 2 - 520,50,50 };
+
     SetTargetFPS(60);
 
     const int barWidth = 130;
@@ -116,7 +118,8 @@ void statistics()
     const int xOffset = 150;
     const int yOffset = screenHeight - 600;
 
-    USER_DATA userData = loadDiagramData();  // Load expense data for diagram
+    // Load expense data for diagram
+    USER_DATA userData = loadDiagramData();  
 
     while (!WindowShouldClose())
     {
@@ -128,6 +131,7 @@ void statistics()
         DrawTexture(background, 0, 0, RAYWHITE);
         DrawRectangle(0, 930, 900, 200, BLACK);
 
+        // Draw user profile picture based on gender
         if (validator.maleOrFemale(currentUser))
         {
             DrawTexture(man, GetScreenWidth() / 2 + 250, GetScreenHeight() / 2 - 500, RAYWHITE);
@@ -144,13 +148,14 @@ void statistics()
             profile();
         }
 
-        DrawText(currentUser, 80, 80, 40, DARKGRAY);
-        DrawText("'s ", 280, 80, 40, DARKGRAY);
-        DrawText("Monthly Expenses", 80, 140, 40, DARKGRAY);
+        // Display user name and expenses title
+        DrawTextEx(font, currentUser, Vector2{ (float)80, (float)80 }, 50, 10, DARKGRAY);
+        DrawTextEx(font, "'s ", Vector2{ (float)330, (float)80 }, 50, 10, DARKGRAY);
+        DrawTextEx(font, "Monthly Expenses", Vector2{ (float)80, (float)140 }, 50, 10, DARKGRAY);
 
         if (userData.expenses.empty())
         {
-            DrawText("No data available for diagram.", xOffset, yOffset - 100, 20, RED);
+            DrawTextEx(font, "No data available for diagram.", Vector2{ (float)xOffset, (float)yOffset - 100 }, 25, 2, RED);
         }
 
         else
@@ -162,10 +167,11 @@ void statistics()
                 DrawRectangle(xOffset + i * (barWidth + 10), yOffset - barHeight, barWidth, barHeight, RED);
             }
 
-            DrawText("Housing", xOffset + 27, yOffset + 10, 20, DARKGRAY);
-            DrawText("Food", (xOffset * 2) + 30, yOffset + 10, 20, DARKGRAY);
-            DrawText("Health", (xOffset * 3) + 17, yOffset + 10, 20, DARKGRAY);
-            DrawText("Gifts", (xOffset * 4) + 10, yOffset + 10, 20, DARKGRAY);
+            // Label each expense category
+            DrawTextEx(font, "Housing", Vector2{ (float)xOffset + 27, (float)yOffset + 10}, 25, 2, DARKGRAY);
+            DrawTextEx(font, "Food", Vector2{ (float)(xOffset * 2) + 30, (float)yOffset + 10 }, 25, 2, DARKGRAY);
+            DrawTextEx(font, "Health", Vector2{ (float)(xOffset * 3) + 15, (float)yOffset + 10}, 25, 2, DARKGRAY);
+            DrawTextEx(font, "Gifts", Vector2{ (float)(xOffset * 4) + 10, (float)yOffset + 10}, 25, 2, DARKGRAY);
         }
 
         // Find the max value and its index in userData.expenses
@@ -182,74 +188,74 @@ void statistics()
         switch (maxIndex) 
         {
         case 0: //Highest expense in housing
-            DrawText("Highest expense: Housing", xOffset - 70, yOffset + 80, 20, BLUE);
+            DrawTextEx(font, "Highest expense: Housing", Vector2{ (float)xOffset - 70, (float)yOffset + 80 }, 30, 2, BLUE);
 
             //First tip
-            DrawText("1. Evaluate Subscription Plans and Utility Usage: Review your internet,", xOffset - 50, yOffset + 130, 20, DARKGRAY);
-            DrawText("phone, and utility plans to see if there are cheaper options that fit your", xOffset - 50, yOffset + 160, 20, DARKGRAY);
-            DrawText("usage better. Adjust settings to use less electricity and water (e.g.,", xOffset - 50, yOffset + 190, 20, DARKGRAY);
-            DrawText(" energy-efficient bulbs, shorter showers) to lower monthly bills. ", xOffset - 50, yOffset + 220, 20, DARKGRAY);
+            DrawTextEx(font, "1. Evaluate Subscription Plans and Utility Usage: Review your internet,", Vector2{ (float)xOffset - 50, (float)yOffset + 130 }, 25, 2, DARKGRAY);
+            DrawTextEx(font, "phone, and utility plans to see if there are cheaper options that fit your", Vector2{ (float)xOffset - 50, (float)yOffset + 160 }, 25, 2, DARKGRAY);
+            DrawTextEx(font, "usage better. Adjust settings to use less electricity and water (e.g.,", Vector2{ (float)xOffset - 50, (float)yOffset + 190 }, 25, 2, DARKGRAY);
+            DrawTextEx(font, " energy-efficient bulbs, shorter showers) to lower monthly bills. ", Vector2{ (float)xOffset - 50, (float)yOffset + 220 }, 25, 2, DARKGRAY);
             
             //Second tip
-            DrawText("2. Consider a Budget or Downsize: If rent or mortgage is taking up too ", xOffset - 50, yOffset + 270, 20, DARKGRAY);
-            DrawText("much of your income, consider creating a detailed budget to identify areas", xOffset - 50, yOffset + 300, 20, DARKGRAY);
-            DrawText("for saving, or explore downsizing to a smaller, more affordable space if", xOffset - 50, yOffset + 330, 20, DARKGRAY);
-            DrawText("possible.", xOffset - 50, yOffset + 360, 20, DARKGRAY);
+            DrawTextEx(font, "2. Consider a Budget or Downsize: If rent or mortgage is taking up too ", Vector2{ (float)xOffset - 50, (float)yOffset + 270 }, 25, 2, DARKGRAY);
+            DrawTextEx(font, "much of your income, consider creating a detailed budget to identify ", Vector2{ (float)xOffset - 50, (float)yOffset + 300 }, 25, 2, DARKGRAY);
+            DrawTextEx(font, "areas for saving, or explore downsizing to a smaller, more affordable ", Vector2{ (float)xOffset - 50, (float)yOffset + 330 }, 25, 2, DARKGRAY);
+            DrawTextEx(font, "space if possible.", Vector2{ (float)xOffset - 50, (float)yOffset + 360 }, 25, 2, DARKGRAY);
 
             break;
 
-        case 1: //Highest expense in ood
-            DrawText("Highest expense: Food", xOffset - 70, yOffset + 80, 20, BLUE);
+        case 1: //Highest expense in food
+            DrawTextEx(font, "Highest expense: Food", Vector2{ (float)xOffset - 70, (float)yOffset + 80 }, 25, 2, BLUE);
 
             //First tip
-            DrawText("1. Plan and Track Purchases: Set a weekly or monthly budget for", xOffset - 50, yOffset + 130, 20, DARKGRAY);
-            DrawText("each of these categories. Use an app or keep a simple list to track ", xOffset - 50, yOffset + 160, 20, DARKGRAY);
-            DrawText("your spending, so you can make adjustments before going over budget.", xOffset - 50, yOffset + 190, 20, DARKGRAY);
+            DrawTextEx(font, "1. Plan and Track Purchases: Set a weekly or monthly budget for", Vector2{ (float)xOffset - 50, (float)yOffset + 130 }, 25, 2, DARKGRAY);
+            DrawTextEx(font, "each of these categories. Use an app or keep a simple list to track ", Vector2{ (float)xOffset - 50, (float)yOffset + 160 }, 25, 2, DARKGRAY);
+            DrawTextEx(font, "your spending, so you can make adjustments before going over budget.", Vector2{ (float)xOffset - 50, (float)yOffset + 190 }, 25, 2, DARKGRAY);
 
             //Second tip
-            DrawText("2. Limit Convenience Purchases: For non-essential items like coffee,  ", xOffset - 50, yOffset + 240, 20, DARKGRAY);
-            DrawText("delivery, and eating out, try setting a rule to limit these purchases to", xOffset - 50, yOffset + 270, 20, DARKGRAY);
-            DrawText("once a week. Prep meals and snacks at home to save on both groceries", xOffset - 50, yOffset + 300, 20, DARKGRAY);
-            DrawText("and takeout!", xOffset - 50, yOffset + 330, 20, DARKGRAY);
+            DrawTextEx(font, "2. Limit Convenience Purchases: For non-essential items like coffee,  ", Vector2{ (float)xOffset - 50,(float)yOffset + 240 }, 25, 2, DARKGRAY);
+            DrawTextEx(font, "delivery, and eating out, try setting a rule to limit these purchases to", Vector2{ (float)xOffset - 50, (float)yOffset + 270 }, 25, 2, DARKGRAY);
+            DrawTextEx(font, "once a week. Prep meals and snacks at home to save on both groceries", Vector2{ (float)xOffset - 50, (float)yOffset + 300 }, 25, 2, DARKGRAY);
+            DrawTextEx(font, "and takeout!", Vector2{ (float)xOffset - 50, (float)yOffset + 330 }, 25, 2, DARKGRAY);
 
             break;
 
         case 2: //Highest expense in health
-            DrawText("Highest expense: Health", xOffset - 70, yOffset + 80, 20, BLUE);
+            DrawTextEx(font, "Highest expense: Health", Vector2{ (float)xOffset - 70, (float)yOffset + 80 }, 25, 2, BLUE);
 
             //First tip
-            DrawText("1. Create a Budget and Track Spending: Establish a budget specifically", xOffset - 50, yOffset + 130, 20, DARKGRAY);
-            DrawText(" for health and wellness expenses. Monitor your spending closely ", xOffset - 50, yOffset + 160, 20, DARKGRAY);
-            DrawText("to identify areas where you might reduce costs, such as opting for", xOffset - 50, yOffset + 190, 20, DARKGRAY);
-            DrawText("group fitness classes instead of personal training.", xOffset - 50, yOffset + 220, 20, DARKGRAY);
+            DrawTextEx(font, "1. Create a Budget and Track Spending: Establish a budget specifically", Vector2{ (float)xOffset - 50, (float)yOffset + 130 }, 25, 2, DARKGRAY);
+            DrawTextEx(font, " for health and wellness expenses. Monitor your spending closely ", Vector2{ (float)xOffset - 50, (float)yOffset + 160 }, 25, 2, DARKGRAY);
+            DrawTextEx(font, "to identify areas where you might reduce costs, such as opting for", Vector2{ (float)xOffset - 50, (float)yOffset + 190 }, 25, 2, DARKGRAY);
+            DrawTextEx(font, "group fitness classes instead of personal training.", Vector2{ (float)xOffset - 50, (float)yOffset + 220 }, 25, 2, DARKGRAY);
 
             //Second tip
-            DrawText("2. Explore Alternatives and Resources: Research alternative options", xOffset - 50, yOffset + 270, 20, DARKGRAY);
-            DrawText("that might be more cost-effective. For example, consider community", xOffset - 50, yOffset + 300, 20, DARKGRAY);
-            DrawText("programs for fitness or mental health services, seek out free or ", xOffset - 50, yOffset + 330, 20, DARKGRAY);
-            DrawText("low-cost wellness workshops, or utilize online resources for workouts", xOffset - 50, yOffset + 360, 20, DARKGRAY);
-            DrawText("and therapy.", xOffset - 50, yOffset + 390, 20, DARKGRAY);
+            DrawTextEx(font, "2. Explore Alternatives and Resources: Research alternative options", Vector2{ (float)xOffset - 50, (float)yOffset + 270 }, 25, 2, DARKGRAY);
+            DrawTextEx(font, "that might be more cost-effective. For example, consider community", Vector2{ (float)xOffset - 50, (float)yOffset + 300 }, 25, 2, DARKGRAY);
+            DrawTextEx(font, "programs for fitness or mental health services, seek out free or ", Vector2{ (float)xOffset - 50, (float)yOffset + 330 }, 25, 2, DARKGRAY);
+            DrawTextEx(font, "low-cost wellness workshops, or utilize online resources for workouts", Vector2{ (float)xOffset - 50, (float)yOffset + 360 }, 25, 2, DARKGRAY);
+            DrawTextEx(font, "and therapy.", Vector2{ (float)xOffset - 50, (float)yOffset + 390 }, 20, 2, DARKGRAY);
 
             break;
 
         case 3: //Highest expense in gifts
-            DrawText("Highest expense: Gifts", xOffset - 70, yOffset + 80, 20, BLUE);
+            DrawTextEx(font, "Highest expense: Gifts", Vector2{ (float)xOffset - 70, (float)yOffset + 80 }, 30, 2, BLUE);
 
             //First tip
-            DrawText("1. Set a Budget: Determine a clear budget for gifts, donations, ", xOffset - 50, yOffset + 130, 20, DARKGRAY);
-            DrawText("and celebrations each month. Allocate specific amounts for each", xOffset - 50, yOffset + 160, 20, DARKGRAY);
-            DrawText("category, and stick to these limits to avoid overspending.", xOffset - 50, yOffset + 190, 20, DARKGRAY);
+            DrawTextEx(font, "1. Set a Budget: Determine a clear budget for gifts, donations, ", Vector2{ (float)xOffset - 50, (float)yOffset + 130 }, 25, 2, DARKGRAY);
+            DrawTextEx(font, "and celebrations each month. Allocate specific amounts for each", Vector2{ (float)xOffset - 50, (float)yOffset + 160 }, 25, 2, DARKGRAY);
+            DrawTextEx(font, "category, and stick to these limits to avoid overspending.", Vector2{ (float)xOffset - 50, (float)yOffset + 190 }, 25, 2, DARKGRAY);
 
             //Second tip
-            DrawText("2. Prioritize and Plan: Before making purchases, prioritize which", xOffset - 50, yOffset + 240, 20, DARKGRAY);
-            DrawText("gifts or events are most important. Plan ahead for larger expenses", xOffset - 50, yOffset + 270, 20, DARKGRAY);
-            DrawText("and consider alternatives like homemade gifts or smaller gatherings to ", xOffset - 50, yOffset + 300, 20, DARKGRAY);
-            DrawText("save money without sacrificing thoughtfulness.", xOffset - 50, yOffset + 330, 20, DARKGRAY);
+            DrawTextEx(font, "2. Prioritize and Plan: Before making purchases, prioritize which", Vector2{ (float)xOffset - 50, (float)yOffset + 240 }, 25, 2, DARKGRAY);
+            DrawTextEx(font, "gifts or events are most important. Plan ahead for larger expenses", Vector2{ (float)xOffset - 50, (float)yOffset + 270 }, 25, 2, DARKGRAY);
+            DrawTextEx(font, "and consider alternatives like homemade gifts or smaller gatherings", Vector2{ (float)xOffset - 50, (float)yOffset + 300 }, 25, 2, DARKGRAY);
+            DrawTextEx(font, "to save money without sacrificing thoughtfulness.", Vector2{ (float)xOffset - 50, (float)yOffset + 330 }, 25, 2, DARKGRAY);
 
             break;
 
         default:
-            DrawText("Error: Unable to determine highest expense", xOffset - 70, yOffset + 120, 20, RED);
+            DrawTextEx(font, "Error: Unable to determine highest expense", Vector2{ (float)xOffset - 70, (float)yOffset + 120 }, 25, 2, RED);
 
             break;
         }
@@ -257,34 +263,39 @@ void statistics()
         bool isMouseOverDashboardButton = CheckCollisionPointRec(mousePosition, dashboardButton);
         DrawRectangleRounded(dashboardButton, 10, int(2), (isMouseOverDashboardButton ? DARKGRAY : LIGHTGRAY));
         DrawTexture(dashboardIcon, dashboardButton.x + 17, dashboardButton.y - 5, RAYWHITE);
-        if (isMouseOverDashboardButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-            dashboard;
+        if (isMouseOverDashboardButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) 
+        {
+            dashboard();
         }
 
         bool isMouseOverBudgetButton = CheckCollisionPointRec(mousePosition, budgetButton);
         DrawRectangleRounded(budgetButton, 10, int(2), (isMouseOverBudgetButton ? DARKGRAY : LIGHTGRAY));
         DrawTexture(budgetIcon, budgetButton.x + 17, budgetButton.y + 10, RAYWHITE);
-        if (isMouseOverBudgetButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+        if (isMouseOverBudgetButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) 
+        {
             budget();
         }
 
         bool isMouseOverStatisticsButton = CheckCollisionPointRec(mousePosition, statisticsButton);
         DrawRectangleRounded(statisticsButton, 10, int(2), (isMouseOverStatisticsButton ? DARKGRAY : LIGHTGRAY));
         DrawTexture(statisticsIcon, statisticsButton.x + 30, statisticsButton.y + 15, RAYWHITE);
-        if (isMouseOverStatisticsButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+        if (isMouseOverStatisticsButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) 
+        {
             ;
         }
 
         bool isMouseOverExitButton = CheckCollisionPointRec(mousePosition, exitButton);
         DrawRectangleRounded(exitButton, 10, int(2), (isMouseOverExitButton ? RED : DARKGRAY));
-        DrawText("X", exitButton.x + 18, exitButton.y + 15, 25, BLACK);
-        if (isMouseOverExitButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+        DrawTextEx(font, "X", Vector2{ (float)exitButton.x + 18, (float)exitButton.y + 15 }, 25, 10, BLACK);
+        if (isMouseOverExitButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) 
+        {
             CloseWindow();
         }
 
         EndDrawing();
     }
 
+    //Unload all textures
     UnloadTexture(manBigSize);
     UnloadTexture(womanBigSize);
     UnloadTexture(man);
@@ -293,4 +304,9 @@ void statistics()
     UnloadTexture(dashboardPhoto);
     UnloadTexture(statisticsPhoto);
     UnloadTexture(budgetPhoto);
+    UnloadTexture(dashboardIcon);
+    UnloadTexture(statisticsIcon);
+    UnloadTexture(budgetIcon);
+    //Unload font
+    UnloadFont(font);
 }

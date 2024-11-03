@@ -5,6 +5,7 @@
 #include "accessData.h"
 #include "validation.h"
 
+// Structure to hold user financial data.
 struct USER_DATA {
     float monthlyIncome;
     float savings;
@@ -53,7 +54,6 @@ void saveDiagramData(const char* username, const char* housing, const char* food
 
     else 
     {
-        cerr << "Error: Could not open diagramData.csv\n";
         return;
     }
 
@@ -74,11 +74,6 @@ void saveDiagramData(const char* username, const char* housing, const char* food
         }
         outputFile.close();
     }
-
-    else 
-    {
-        cerr << "Error: Could not open diagramData.csv for writing\n";
-    }
 }
 
 extern USER_DATA generateUserData();
@@ -88,6 +83,7 @@ extern bool userDataExist();
 
 extern void updateBalance(float newBalance);
 
+// Update diagram data for the current user.
 void updateDiagram(float newDiagram) 
 {
     rapidcsv::Document diagramData("../data/diagramData.csv");
@@ -109,8 +105,35 @@ void updateDiagram(float newDiagram)
     }
 }
 
-void budget() {
+// Save the last four spendings to lastSpendings.csv.
+void saveLastSpendings(const char* expense1, const char* expense2, const char* expense3, const char* expense4, float balance) {
+    ofstream file("../data/lastSpendings.csv");
+    if (file.is_open()) {
+        // Calculate percentage of each expense from the balance
+        float e1 = stof(expense1);
+        float e2 = stof(expense2);
+        float e3 = stof(expense3);
+        float e4 = stof(expense4);
+
+        float e1Percentage = (e1 / balance) * 100.0;
+        float e2Percentage = (e2 / balance) * 100.0;
+        float e3Percentage = (e3 / balance) * 100.0;
+        float e4Percentage = (e4 / balance) * 100.0;
+
+        file << fixed << setprecision(2); // Formatting for percentages
+        file << e1 << "," << e1Percentage << "\n";
+        file << e2 << "," << e2Percentage << "\n";
+        file << e3 << "," << e3Percentage << "\n";
+        file << e4 << "," << e4Percentage << "\n";
+
+        file.close();
+    }
+}
     
+// Function to display the budget interface.
+void budget() 
+{
+    Font font = LoadFont("../font/font.ttf");
 
     const int screenWidth = 900;
     const int screenHeight = 1080;
@@ -161,6 +184,7 @@ void budget() {
     Image statisticsImage = LoadImage("../images/statistics.png");
     Image budgetImage = LoadImage("../images/budget.png");
 
+    // Resize images for the interface.
     ImageResize(&manImage, newWidth - 15, newHeight);
     ImageResize(&womanImage, newWidth, newHeight);
     ImageResize(&dashboardImage, newWidth- 30, newHeight-37);
@@ -233,7 +257,7 @@ void budget() {
                 if ((key >= 32) && (key <= 125) && (inputBox2LetterCount < 24))
                 {
                     input2[inputBox2LetterCount++] = (char)key;
-                    input2[inputBox2LetterCount] = '\0';
+                    input2[inputBox2LetterCount] = '\0'; // Null-terminate the string
                 }
                 key = GetCharPressed();
             }
@@ -252,7 +276,7 @@ void budget() {
                 if ((key >= 32) && (key <= 125) && (inputBox3LetterCount < 24))
                 {
                     input3[inputBox3LetterCount++] = (char)key;
-                    input3[inputBox3LetterCount] = '\0';
+                    input3[inputBox3LetterCount] = '\0'; // Null-terminate the string
                 }
                 key = GetCharPressed();
             }
@@ -270,7 +294,7 @@ void budget() {
                 if ((key >= 32) && (key <= 125) && (inputBox4LetterCount < 24))
                 {
                     input4[inputBox4LetterCount++] = (char)key;
-                    input4[inputBox4LetterCount] = '\0';
+                    input4[inputBox4LetterCount] = '\0'; // Null-terminate the string
                 }
                 key = GetCharPressed();
             }
@@ -279,7 +303,6 @@ void budget() {
                 input4[--inputBox4LetterCount] = '\0';
             }
         }
-
 
         DrawRectangle(0, 930, 900, 200, BLACK);
 
@@ -300,76 +323,77 @@ void budget() {
             profile();
         }
 
+        // Draw input boxes and labels
         DrawRectangleRec(inputBox1, LIGHTGRAY);
-        DrawText("Expense 1:", inputBox1.x, inputBox1.y - 30, 20, DARKGRAY);
-        DrawText(input1, inputBox1.x + 5, inputBox1.y + 8, 40, BLACK);
+        DrawTextEx(font, "Expense 1:", Vector2{ (float)inputBox1.x, inputBox1.y - 30 }, 25, 2, DARKGRAY);
+        DrawTextEx(font, input1, Vector2{ (float)inputBox1.x + 5, inputBox1.y + 8 }, 40, 2, BLACK);
 
         DrawRectangleRec(inputBox2, LIGHTGRAY);
-        DrawText("Expense 2:", inputBox2.x, inputBox2.y - 30, 20, DARKGRAY);
-        DrawText(input2, inputBox2.x + 5, inputBox2.y + 8, 40, BLACK);
+        DrawTextEx(font, "Expense 2:", Vector2{ (float)inputBox2.x, inputBox2.y - 30 }, 25, 2, DARKGRAY);
+        DrawTextEx(font, input2, Vector2{ (float)inputBox2.x + 5, inputBox2.y + 8 }, 40, 2, BLACK);
 
         DrawRectangleRec(inputBox3, LIGHTGRAY);
-        DrawText("Expense 3:", inputBox3.x, inputBox3.y - 30, 20, DARKGRAY);
-        DrawText(input3, inputBox3.x + 5, inputBox3.y + 8, 40, BLACK);
+        DrawTextEx(font, "Expense 3:", Vector2{ (float)inputBox3.x, inputBox3.y - 30 }, 25, 2, DARKGRAY);
+        DrawTextEx(font, input3, Vector2{ (float)inputBox3.x + 5, inputBox3.y + 8 }, 40, 2, BLACK);
 
         DrawRectangleRec(inputBox4, LIGHTGRAY);
-        DrawText("Expense 4:", inputBox4.x, inputBox4.y - 30, 20, DARKGRAY);
-        DrawText(input4, inputBox4.x + 5, inputBox4.y + 8, 40, BLACK);
+        DrawTextEx(font, "Expense 4:", Vector2{ (float)inputBox4.x, inputBox4.y - 30 }, 25, 2, DARKGRAY);
+        DrawTextEx(font, input4, Vector2{ (float)inputBox4.x + 5, inputBox4.y + 8 }, 40, 2, BLACK);
 
         // Handle submit button click
         DrawRectangleRounded(submitDataButton, 0.2, 10, BLACK);
-        DrawText("  Submit", submitDataButton.x + 15, submitDataButton.y + 20, 25, RAYWHITE);
+        DrawTextEx(font, "Submit", Vector2{ (float)submitDataButton.x + 25, submitDataButton.y + 20 }, 30, 2, RAYWHITE);
 
         if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && CheckCollisionPointRec(mousePosition, submitDataButton))
         {
-            try
-            {
-                // Save expenses to diagramData.csv
-                saveDiagramData(currentUser, input1, input2, input3, input4);
-                // Calculate total expenses and update balance
-                float totalExpense = stof(input1) + stof(input2) + stof(input3) + stof(input4);
-                userData.balance -= totalExpense;  // Deduct expenses from balance
-                updateBalance(userData.balance);   // Save updated balance to CSV
-            }
+            // Save expenses to diagramData.csv
+            saveDiagramData(currentUser, input1, input2, input3, input4);
 
-            catch (const invalid_argument& e)
-            {
-                cerr << "Error: Invalid input for expenses\n";
-            }
+            // Calculate total expenses and update balance
+            float totalExpense = stof(input1) + stof(input2) + stof(input3) + stof(input4);
+            userData.balance -= totalExpense;  // Deduct expenses from balance
+            updateBalance(userData.balance);   // Save updated balance to CSV
+            saveLastSpendings(input1, input2, input3, input4, userData.balance);
         }
+
 
         // Draw navigation buttons
         bool isMouseOverDashboardButton = CheckCollisionPointRec(mousePosition, dashboardButton);
         DrawRectangleRounded(dashboardButton, 10, int(2), (isMouseOverDashboardButton ? DARKGRAY : LIGHTGRAY));
         DrawTexture(dashboardIcon, dashboardButton.x + 17, dashboardButton.y - 5, RAYWHITE);
-        if (isMouseOverDashboardButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+        if (isMouseOverDashboardButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) 
+        {
             dashboard();
         }
 
         bool isMouseOverBudgetButton = CheckCollisionPointRec(mousePosition, budgetButton);
         DrawRectangleRounded(budgetButton, 10, int(2), (isMouseOverBudgetButton ? DARKGRAY : LIGHTGRAY));
         DrawTexture(budgetIcon, budgetButton.x + 17, budgetButton.y + 10, RAYWHITE);
-        if (isMouseOverBudgetButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+        if (isMouseOverBudgetButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) 
+        {
             ;
         }
 
         bool isMouseOverStatisticsButton = CheckCollisionPointRec(mousePosition, statisticsButton);
         DrawRectangleRounded(statisticsButton, 10, int(2), (isMouseOverStatisticsButton ? DARKGRAY : LIGHTGRAY));
         DrawTexture(statisticsIcon, statisticsButton.x + 30, statisticsButton.y + 15, RAYWHITE);
-        if (isMouseOverStatisticsButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+        if (isMouseOverStatisticsButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) 
+        {
             statistics();
         }
 
         bool isMouseOverExitButton = CheckCollisionPointRec(mousePosition, exitButton);
         DrawRectangleRounded(exitButton, 10, int(2), (isMouseOverExitButton ? RED : DARKGRAY));
-        DrawText("X", exitButton.x + 18, exitButton.y + 15, 25, BLACK);
-        if (isMouseOverExitButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+        DrawTextEx(font, "X", Vector2{ (float)exitButton.x + 18, exitButton.y + 15 }, 25, 10, BLACK);
+        if (isMouseOverExitButton && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) 
+        {
             CloseWindow();
         }
 
         EndDrawing();
     }
 
+    //Unload all textures
     UnloadTexture(manBigSize);
     UnloadTexture(womanBigSize);
     UnloadTexture(man);
@@ -378,4 +402,9 @@ void budget() {
     UnloadTexture(dashboardPhoto);
     UnloadTexture(statisticsPhoto);
     UnloadTexture(budgetPhoto);
+    UnloadTexture(dashboardIcon);
+    UnloadTexture(statisticsIcon);
+    UnloadTexture(budgetIcon);
+    //Unload font
+    UnloadFont(font);
 }
