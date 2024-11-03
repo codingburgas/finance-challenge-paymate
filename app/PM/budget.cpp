@@ -6,7 +6,8 @@
 #include "validation.h"
 
 // Structure to hold user financial data.
-struct USER_DATA {
+struct USER_DATA 
+{
     float monthlyIncome;
     float savings;
     float balance;
@@ -223,7 +224,6 @@ void budget()
         {
             SetMouseCursor(MOUSE_CURSOR_IBEAM);
         }
-
         else
         {
             SetMouseCursor(MOUSE_CURSOR_DEFAULT);

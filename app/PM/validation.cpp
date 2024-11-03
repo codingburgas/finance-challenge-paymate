@@ -30,7 +30,8 @@ const bool Validate::isPasswordCorrect(const string& targetUsername, const strin
     { 
         istringstream iss(line);
         
-        if (getline(iss, storedUsername, ',') && getline(iss, storedPassword, ',') && getline(iss,skipGender,',')) {
+        if (getline(iss, storedUsername, ',') && getline(iss, storedPassword, ',') && getline(iss,skipGender,',')) 
+        {
             if (storedUsername == targetUsername && storedPassword == targetPassword ) 
             {
                 return true; // Return true if the target username and password match any stored pair
